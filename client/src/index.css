@@ -4,14 +4,15 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: "Inter", sans-serif;
-  --font-display: "Space Grotesk", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-display: "Cinzel", serif;
+  --font-serif: "Cormorant Garamond", serif;
 
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -47,94 +48,60 @@
 }
 
 :root {
-  /* Cyber-Brutalism Palette */
-  /* Base: Off-white (#F2F2F2) & Charcoal (#1A1A1A) */
-  /* Accent: Electric Lime (#CCFF00) */
+  /* AURA Palette - Dark Glassmorphism */
+  /* Base: Deep Midnight Blue (#05050A) */
+  /* Accent: Champagne Gold (#D4AF37) & Ethereal Violet (#8A2BE2) */
   
-  --background: oklch(0.96 0 0); /* #F5F5F5 - Off-white */
-  --foreground: oklch(0.15 0 0); /* #1A1A1A - Charcoal Black */
+  --background: oklch(0.05 0.02 260); /* Deep Midnight Blue */
+  --foreground: oklch(0.98 0.01 260); /* Soft White */
   
-  --card: oklch(1 0 0); /* White */
-  --card-foreground: oklch(0.15 0 0);
+  --card: oklch(0.1 0.03 260 / 0.4); /* Glass effect base */
+  --card-foreground: oklch(0.98 0.01 260);
   
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0 0);
+  --popover: oklch(0.08 0.03 260 / 0.9);
+  --popover-foreground: oklch(0.98 0.01 260);
   
-  --primary: oklch(0.15 0 0); /* Black for primary buttons */
-  --primary-foreground: oklch(0.92 0.16 110); /* Electric Lime text on black buttons */
+  --primary: oklch(0.85 0.15 85); /* Champagne Gold */
+  --primary-foreground: oklch(0.1 0.05 260); /* Dark text on gold */
   
-  --secondary: oklch(0.92 0 0); /* Light Grey */
-  --secondary-foreground: oklch(0.15 0 0);
+  --secondary: oklch(0.2 0.05 260 / 0.5); /* Glass secondary */
+  --secondary-foreground: oklch(0.9 0.05 260);
   
-  --muted: oklch(0.92 0 0);
-  --muted-foreground: oklch(0.45 0 0);
+  --muted: oklch(0.2 0.02 260 / 0.3);
+  --muted-foreground: oklch(0.6 0.02 260);
   
-  --accent: oklch(0.92 0.16 110); /* Electric Lime #CCFF00 */
-  --accent-foreground: oklch(0.15 0 0);
+  --accent: oklch(0.6 0.2 280); /* Ethereal Violet */
+  --accent-foreground: oklch(0.98 0.01 260);
   
-  --destructive: oklch(0.6 0.15 25);
+  --destructive: oklch(0.6 0.2 25);
   --destructive-foreground: oklch(0.98 0 0);
   
-  --border: oklch(0.85 0 0); /* Sharp borders */
-  --input: oklch(0.85 0 0);
-  --ring: oklch(0.15 0 0); /* Black focus rings */
+  --border: oklch(1 0 0 / 0.1); /* Subtle glass border */
+  --input: oklch(1 0 0 / 0.1);
+  --ring: oklch(0.85 0.15 85 / 0.5); /* Gold glow ring */
   
-  --radius: 0rem; /* Sharp corners for brutalism */
+  --radius: 1rem; /* Soft rounded corners */
   
-  --chart-1: oklch(0.92 0.16 110); /* Lime */
-  --chart-2: oklch(0.15 0 0); /* Black */
-  --chart-3: oklch(0.6 0 0); /* Grey */
-  --chart-4: oklch(0.8 0 0); /* Light Grey */
-  --chart-5: oklch(0.4 0 0); /* Dark Grey */
+  --chart-1: oklch(0.85 0.15 85); /* Gold */
+  --chart-2: oklch(0.6 0.2 280); /* Violet */
+  --chart-3: oklch(0.7 0.15 200); /* Cyan */
+  --chart-4: oklch(0.9 0.05 260); /* White */
+  --chart-5: oklch(0.4 0.1 260); /* Grey */
   
-  --sidebar: oklch(0.98 0 0);
-  --sidebar-foreground: oklch(0.15 0 0);
-  --sidebar-primary: oklch(0.15 0 0);
-  --sidebar-primary-foreground: oklch(0.92 0.16 110);
-  --sidebar-accent: oklch(0.92 0.16 110);
-  --sidebar-accent-foreground: oklch(0.15 0 0);
-  --sidebar-border: oklch(0.85 0 0);
-  --sidebar-ring: oklch(0.15 0 0);
+  --sidebar: oklch(0.05 0.02 260 / 0.8); /* Glass sidebar */
+  --sidebar-foreground: oklch(0.98 0.01 260);
+  --sidebar-primary: oklch(0.85 0.15 85);
+  --sidebar-primary-foreground: oklch(0.1 0.05 260);
+  --sidebar-accent: oklch(1 0 0 / 0.1);
+  --sidebar-accent-foreground: oklch(0.98 0.01 260);
+  --sidebar-border: oklch(1 0 0 / 0.05);
+  --sidebar-ring: oklch(0.85 0.15 85);
 }
 
 .dark {
-  /* Inverted Cyber-Brutalism */
-  --background: oklch(0.1 0 0); /* #121212 */
-  --foreground: oklch(0.95 0 0); /* Off-white */
-  
-  --card: oklch(0.15 0 0); /* Dark Grey */
-  --card-foreground: oklch(0.95 0 0);
-  
-  --popover: oklch(0.15 0 0);
-  --popover-foreground: oklch(0.95 0 0);
-  
-  --primary: oklch(0.92 0.16 110); /* Electric Lime */
-  --primary-foreground: oklch(0.1 0 0); /* Black text */
-  
-  --secondary: oklch(0.2 0 0);
-  --secondary-foreground: oklch(0.95 0 0);
-  
-  --muted: oklch(0.2 0 0);
-  --muted-foreground: oklch(0.6 0 0);
-  
-  --accent: oklch(0.92 0.16 110);
-  --accent-foreground: oklch(0.1 0 0);
-  
-  --destructive: oklch(0.6 0.15 25);
-  --destructive-foreground: oklch(0.95 0 0);
-  
-  --border: oklch(0.25 0 0);
-  --input: oklch(0.25 0 0);
-  --ring: oklch(0.92 0.16 110);
-  
-  --sidebar: oklch(0.12 0 0);
-  --sidebar-foreground: oklch(0.95 0 0);
-  --sidebar-primary: oklch(0.92 0.16 110);
-  --sidebar-primary-foreground: oklch(0.1 0 0);
-  --sidebar-accent: oklch(0.2 0 0);
-  --sidebar-accent-foreground: oklch(0.95 0 0);
-  --sidebar-border: oklch(0.25 0 0);
-  --sidebar-ring: oklch(0.92 0.16 110);
+  /* Same as root since it's a dark-first design */
+  --background: oklch(0.05 0.02 260);
+  --foreground: oklch(0.98 0.01 260);
 }
 
 @layer base {
@@ -143,22 +110,27 @@
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    background-image: url('/images/bg-texture.png');
-    background-repeat: repeat;
-    background-size: 400px;
+    background-image: url('/images/aura-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display font-bold tracking-tight;
+    @apply font-display tracking-wide;
   }
   
-  /* Brutalist Button Styles */
-  .btn-brutal {
-    @apply border-2 border-black dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all;
+  /* Glassmorphism Utilities */
+  .glass-panel {
+    @apply bg-card backdrop-blur-xl border border-white/10 shadow-2xl;
   }
   
-  .card-brutal {
-    @apply border border-border bg-card shadow-sm hover:shadow-md transition-shadow duration-200;
+  .glass-button {
+    @apply bg-white/5 hover:bg-white/10 border border-white/10 backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:border-primary/30;
+  }
+  
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#D4AF37] via-[#F2D06B] to-[#D4AF37];
   }
 }
 
@@ -187,7 +159,7 @@
     .container {
       padding-left: 2rem;
       padding-right: 2rem;
-      max-width: 1400px; /* Wider container for dashboard feel */
+      max-width: 1400px;
     }
   }
 }

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Youtube, Upload, Trash2, CheckCircle2, Loader2, BarChart3 } from "lucide-react";
+import { Plus, Youtube, Upload, Trash2, CheckCircle2, Loader2, BarChart3, Sparkles, PlayCircle } from "lucide-react";
 
 export default function References() {
   const [url, setUrl] = useState("");
@@ -18,7 +18,6 @@ export default function References() {
   const handleAnalyze = () => {
     if (!url) return;
     setIsAnalyzing(true);
-    // Simulate API call
     setTimeout(() => {
       setReferences([
         { id: Date.now(), title: "Novo Vídeo Analisado", channel: "Canal Exemplo", duration: "10:00", status: "analyzed", date: "Hoje" },
@@ -30,61 +29,84 @@ export default function References() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h2 className="text-3xl font-display font-bold tracking-tight">Referências</h2>
-          <p className="text-muted-foreground font-mono text-sm mt-1">Gerencie o material fonte para o treinamento da sua IA.</p>
+          <h2 className="text-4xl font-display font-bold tracking-tight text-white">Referências</h2>
+          <p className="text-muted-foreground font-sans text-lg mt-2">Alimente a AURA com o DNA dos seus criadores favoritos.</p>
         </div>
       </div>
 
       <div className="grid gap-8 lg:grid-cols-3">
         {/* Input Section */}
-        <div className="lg:col-span-2 space-y-6">
-          <Card className="rounded-none border-border shadow-sm">
-            <CardHeader>
-              <CardTitle className="font-display">Adicionar Nova Referência</CardTitle>
-              <CardDescription>Cole um link do YouTube ou faça upload de um arquivo de vídeo.</CardDescription>
+        <div className="lg:col-span-2 space-y-8">
+          <Card className="glass-panel border-0 rounded-3xl overflow-hidden relative">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-primary opacity-50"></div>
+            <CardHeader className="pb-2">
+              <CardTitle className="font-display text-xl text-white flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-primary" />
+                Nova Análise
+              </CardTitle>
+              <CardDescription className="text-muted-foreground">Cole um link do YouTube ou faça upload para extrair o DNA criativo.</CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="pt-6">
               <Tabs defaultValue="youtube" className="w-full">
-                <TabsList className="grid w-full grid-cols-2 mb-6 rounded-none bg-secondary p-1">
-                  <TabsTrigger value="youtube" className="rounded-none data-[state=active]:bg-background data-[state=active]:shadow-sm">YouTube URL</TabsTrigger>
-                  <TabsTrigger value="upload" className="rounded-none data-[state=active]:bg-background data-[state=active]:shadow-sm">Upload Arquivo</TabsTrigger>
+                <TabsList className="grid w-full grid-cols-2 mb-8 bg-black/40 p-1 rounded-xl border border-white/5">
+                  <TabsTrigger value="youtube" className="rounded-lg data-[state=active]:bg-white/10 data-[state=active]:text-white text-muted-foreground transition-all">YouTube URL</TabsTrigger>
+                  <TabsTrigger value="upload" className="rounded-lg data-[state=active]:bg-white/10 data-[state=active]:text-white text-muted-foreground transition-all">Upload Arquivo</TabsTrigger>
                 </TabsList>
                 
-                <TabsContent value="youtube" className="space-y-4">
-                  <div className="flex gap-2">
-                    <div className="relative flex-1">
-                      <Youtube className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                      <Input 
-                        placeholder="https://youtube.com/watch?v=..." 
-                        className="pl-9 rounded-none border-border focus-visible:ring-primary"
-                        value={url}
-                        onChange={(e) => setUrl(e.target.value)}
-                      />
+                <TabsContent value="youtube" className="space-y-6">
+                  <div className="flex gap-3">
+                    <div className="relative flex-1 group">
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <div className="relative bg-black/50 border border-white/10 rounded-xl flex items-center px-4 h-14 focus-within:border-primary/50 transition-colors">
+                        <Youtube className="w-5 h-5 text-red-500 mr-3" />
+                        <Input 
+                          placeholder="https://youtube.com/watch?v=..." 
+                          className="border-0 bg-transparent focus-visible:ring-0 text-white placeholder:text-muted-foreground/50 h-full p-0"
+                          value={url}
+                          onChange={(e) => setUrl(e.target.value)}
+                        />
+                      </div>
                     </div>
                     <Button 
-                      className="rounded-none bg-primary text-primary-foreground hover:bg-primary/90 min-w-[120px]"
+                      className="h-14 px-8 rounded-xl bg-white text-black hover:bg-white/90 font-bold shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all hover:scale-105"
                       onClick={handleAnalyze}
                       disabled={isAnalyzing || !url}
                     >
-                      {isAnalyzing ? <Loader2 className="w-4 h-4 animate-spin" /> : "Analisar"}
+                      {isAnalyzing ? <Loader2 className="w-5 h-5 animate-spin" /> : "Analisar"}
                     </Button>
                   </div>
-                  <p className="text-xs text-muted-foreground">
-                    A IA irá extrair automaticamente: Transcrição, Tom de Voz, Ritmo de Fala e Estrutura de Roteiro.
-                  </p>
+                  <div className="flex items-center gap-4 text-xs text-muted-foreground bg-white/5 p-4 rounded-xl border border-white/5">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-primary" />
+                      <span>Transcrição</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-primary" />
+                      <span>Tom de Voz</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-primary" />
+                      <span>Ritmo</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-primary" />
+                      <span>Estrutura</span>
+                    </div>
+                  </div>
                 </TabsContent>
                 
                 <TabsContent value="upload">
-                  <div className="border-2 border-dashed border-border p-8 text-center hover:bg-secondary/50 transition-colors cursor-pointer">
-                    <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Upload className="w-6 h-6 text-muted-foreground" />
+                  <div className="border-2 border-dashed border-white/10 rounded-2xl p-12 text-center hover:bg-white/5 hover:border-primary/30 transition-all cursor-pointer group relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform border border-white/10 shadow-lg">
+                      <Upload className="w-8 h-8 text-muted-foreground group-hover:text-primary transition-colors" />
                     </div>
-                    <h3 className="font-medium mb-1">Arraste seu vídeo aqui</h3>
-                    <p className="text-xs text-muted-foreground mb-4">MP4, MOV ou AVI até 500MB</p>
-                    <Button variant="outline" className="rounded-none">Selecionar Arquivo</Button>
+                    <h3 className="font-display font-bold text-lg text-white mb-2">Arraste seu vídeo aqui</h3>
+                    <p className="text-sm text-muted-foreground mb-6">MP4, MOV ou AVI até 500MB</p>
+                    <Button variant="outline" className="rounded-full border-white/20 hover:bg-white hover:text-black transition-all">Selecionar Arquivo</Button>
                   </div>
                 </TabsContent>
               </Tabs>
@@ -92,47 +114,48 @@ export default function References() {
           </Card>
 
           {/* List of References */}
-          <div className="space-y-4">
-            <h3 className="font-display font-bold text-lg">Biblioteca de Referências</h3>
+          <div className="space-y-6">
+            <h3 className="font-display font-bold text-xl text-white pl-2 border-l-4 border-primary">Biblioteca de Referências</h3>
             <div className="grid gap-4">
               {references.map((ref) => (
-                <div key={ref.id} className="group flex items-center gap-4 p-4 bg-card border border-border hover:border-primary transition-all hover:shadow-md">
-                  <div className="w-32 aspect-video bg-secondary relative overflow-hidden">
-                    {/* Placeholder thumbnail */}
-                    <div className="absolute inset-0 flex items-center justify-center bg-muted">
-                      <Youtube className="w-8 h-8 text-muted-foreground/50" />
+                <div key={ref.id} className="group flex items-center gap-5 p-4 bg-card/50 backdrop-blur-sm border border-white/5 rounded-2xl hover:border-primary/30 transition-all hover:bg-white/5 hover:shadow-lg hover:translate-x-1">
+                  <div className="w-40 aspect-video bg-black/50 rounded-xl relative overflow-hidden border border-white/5 group-hover:border-primary/20 transition-colors">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <PlayCircle className="w-10 h-10 text-white/20 group-hover:text-primary transition-colors" />
                     </div>
+                    {/* Overlay gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-60"></div>
                   </div>
                   
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h4 className="font-bold truncate">{ref.title}</h4>
+                  <div className="flex-1 min-w-0 py-2">
+                    <div className="flex items-center gap-3 mb-2">
+                      <h4 className="font-display font-bold text-lg text-white truncate group-hover:text-primary transition-colors">{ref.title}</h4>
                       {ref.status === "analyzed" && (
-                        <Badge variant="secondary" className="rounded-none text-[10px] bg-green-500/10 text-green-600 border-green-500/20 hover:bg-green-500/20">
+                        <Badge variant="secondary" className="rounded-full text-[10px] bg-primary/10 text-primary border border-primary/20 px-2">
                           ANALISADO
                         </Badge>
                       )}
                       {ref.status === "processing" && (
-                        <Badge variant="secondary" className="rounded-none text-[10px] bg-yellow-500/10 text-yellow-600 border-yellow-500/20 hover:bg-yellow-500/20">
+                        <Badge variant="secondary" className="rounded-full text-[10px] bg-accent/10 text-accent border border-accent/20 px-2 animate-pulse">
                           PROCESSANDO
                         </Badge>
                       )}
                     </div>
-                    <div className="flex items-center gap-4 text-xs text-muted-foreground font-mono">
-                      <span>{ref.channel}</span>
-                      <span>•</span>
+                    <div className="flex items-center gap-4 text-xs text-muted-foreground font-sans">
+                      <span className="flex items-center gap-1"><Youtube className="w-3 h-3" /> {ref.channel}</span>
+                      <span className="w-1 h-1 rounded-full bg-white/20"></span>
                       <span>{ref.duration}</span>
-                      <span>•</span>
+                      <span className="w-1 h-1 rounded-full bg-white/20"></span>
                       <span>{ref.date}</span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Button size="icon" variant="ghost" className="h-8 w-8 text-muted-foreground hover:text-primary">
-                      <BarChart3 className="w-4 h-4" />
+                  <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all px-2">
+                    <Button size="icon" variant="ghost" className="h-10 w-10 rounded-full text-muted-foreground hover:text-white hover:bg-white/10">
+                      <BarChart3 className="w-5 h-5" />
                     </Button>
-                    <Button size="icon" variant="ghost" className="h-8 w-8 text-muted-foreground hover:text-destructive">
-                      <Trash2 className="w-4 h-4" />
+                    <Button size="icon" variant="ghost" className="h-10 w-10 rounded-full text-muted-foreground hover:text-destructive hover:bg-destructive/10">
+                      <Trash2 className="w-5 h-5" />
                     </Button>
                   </div>
                 </div>
@@ -143,51 +166,51 @@ export default function References() {
 
         {/* DNA Analysis Sidebar */}
         <div className="space-y-6">
-          <Card className="rounded-none border-border shadow-sm bg-secondary/30 sticky top-24">
-            <CardHeader>
-              <CardTitle className="font-display flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-primary" />
-                DNA da Persona
-              </CardTitle>
-              <CardDescription>Padrões identificados nas suas referências.</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="space-y-2">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Tom de Voz</h4>
+          <Card className="glass-panel border-0 rounded-3xl sticky top-28 overflow-hidden">
+            <div className="h-32 bg-black relative overflow-hidden">
+              <img src="/images/aura-analysis.png" alt="AI Analysis" className="w-full h-full object-cover opacity-60 mix-blend-screen" />
+              <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent"></div>
+              <div className="absolute bottom-4 left-6">
+                <h3 className="font-display font-bold text-xl text-white flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-primary" />
+                  DNA da Persona
+                </h3>
+              </div>
+            </div>
+            <CardContent className="space-y-8 pt-6">
+              <div className="space-y-3">
+                <h4 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Tom de Voz</h4>
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="outline" className="rounded-none bg-background">Didático</Badge>
-                  <Badge variant="outline" className="rounded-none bg-background">Entusiasta</Badge>
-                  <Badge variant="outline" className="rounded-none bg-background">Direto</Badge>
+                  <Badge variant="outline" className="rounded-full bg-white/5 border-white/10 text-white hover:bg-primary/20 hover:border-primary/30 transition-colors px-3 py-1">Didático</Badge>
+                  <Badge variant="outline" className="rounded-full bg-white/5 border-white/10 text-white hover:bg-primary/20 hover:border-primary/30 transition-colors px-3 py-1">Entusiasta</Badge>
+                  <Badge variant="outline" className="rounded-full bg-white/5 border-white/10 text-white hover:bg-primary/20 hover:border-primary/30 transition-colors px-3 py-1">Direto</Badge>
                 </div>
-                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                  Sua persona tende a começar vídeos com uma pergunta provocativa ("gancho") e usa analogias simples para explicar conceitos complexos.
+                <p className="text-sm text-muted-foreground leading-relaxed font-sans border-l-2 border-white/10 pl-3 italic">
+                  "Sua persona tende a começar vídeos com uma pergunta provocativa e usa analogias simples para explicar conceitos complexos."
                 </p>
               </div>
 
-              <div className="space-y-2">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Estrutura Típica</h4>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 text-sm">
-                    <div className="w-12 font-mono text-xs text-muted-foreground">0-30s</div>
-                    <div className="flex-1 p-2 bg-background border border-border text-xs">Gancho + Promessa</div>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm">
-                    <div className="w-12 font-mono text-xs text-muted-foreground">30s-2m</div>
-                    <div className="flex-1 p-2 bg-background border border-border text-xs">Contexto / Problema</div>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm">
-                    <div className="w-12 font-mono text-xs text-muted-foreground">2m-8m</div>
-                    <div className="flex-1 p-2 bg-background border border-border text-xs">3 Passos Práticos</div>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm">
-                    <div className="w-12 font-mono text-xs text-muted-foreground">End</div>
-                    <div className="flex-1 p-2 bg-background border border-border text-xs">CTA para Comentários</div>
-                  </div>
+              <div className="space-y-4">
+                <h4 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Estrutura Típica</h4>
+                <div className="space-y-1 relative">
+                  <div className="absolute left-[15px] top-2 bottom-2 w-0.5 bg-white/10"></div>
+                  {[
+                    { time: "0-30s", label: "Gancho + Promessa", color: "bg-primary" },
+                    { time: "30s-2m", label: "Contexto / Problema", color: "bg-white" },
+                    { time: "2m-8m", label: "3 Passos Práticos", color: "bg-white" },
+                    { time: "End", label: "CTA para Comentários", color: "bg-accent" },
+                  ].map((step, i) => (
+                    <div key={i} className="flex items-center gap-4 relative z-10 group">
+                      <div className={`w-8 h-8 rounded-full bg-black border border-white/10 flex items-center justify-center text-[10px] font-mono text-muted-foreground group-hover:border-primary/50 group-hover:text-primary transition-colors shadow-lg`}>
+                        {i + 1}
+                      </div>
+                      <div className="flex-1 p-3 bg-white/5 border border-white/5 rounded-xl text-xs text-white group-hover:bg-white/10 transition-colors flex justify-between items-center">
+                        <span>{step.label}</span>
+                        <span className="text-[10px] text-muted-foreground font-mono">{step.time}</span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              </div>
-
-              <div className="pt-4 border-t border-border">
-                <img src="/images/feature-analysis.png" alt="AI Analysis" className="w-full h-32 object-contain opacity-80 mix-blend-multiply dark:mix-blend-screen" />
               </div>
             </CardContent>
           </Card>
