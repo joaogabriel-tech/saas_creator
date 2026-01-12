@@ -29,7 +29,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <div className="flex flex-col h-full py-8 px-6">
       <div className="flex items-center gap-3 mb-12 px-2">
         <div className="w-10 h-10 relative flex items-center justify-center">
-          <img src="/images/kryo-luxury-logo.png" alt="KRYO Logo" className="w-full h-full object-contain" />
+          <img src="/images/kryo-luxury-logo.png" alt="KRYO Logo" className="w-full h-full object-contain drop-shadow-[0_0_8px_rgba(168,85,247,0.3)]" />
         </div>
         <span className="font-display font-bold text-2xl tracking-tight text-foreground">KRYO</span>
       </div>
@@ -93,7 +93,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-background/80 backdrop-blur-md border-b border-border/40 z-50 flex items-center justify-between px-4">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 relative flex items-center justify-center">
-            <img src="/images/kryo-luxury-logo.png" alt="KRYO Logo" className="w-full h-full object-contain" />
+            <img src="/images/kryo-luxury-logo.png" alt="KRYO Logo" className="w-full h-full object-contain drop-shadow-[0_0_8px_rgba(168,85,247,0.3)]" />
           </div>
           <span className="font-display font-bold text-xl">KRYO</span>
         </div>
