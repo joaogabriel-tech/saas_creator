@@ -7,7 +7,8 @@ import {
   LogOut, 
   Plus,
   Sparkles,
-  Menu
+  Menu,
+  CreditCard
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -20,6 +21,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     { icon: LayoutDashboard, label: "Dashboard", href: "/" },
     { icon: Video, label: "Referências", href: "/references" },
     { icon: FileText, label: "Roteiros", href: "/scripts" },
+    { icon: CreditCard, label: "Planos", href: "/pricing" },
     { icon: Settings, label: "Configurações", href: "/settings" },
   ];
 

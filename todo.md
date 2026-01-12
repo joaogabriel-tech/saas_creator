@@ -1,8 +1,4 @@
-- [ ] Gerar assets visuais estilo "Dark Glassmorphism" (backgrounds, ícones 3D abstratos)
-- [ ] Atualizar `index.html` com novas fontes (Serif elegante + Sans moderna)
-- [ ] Atualizar `index.css` com paleta de cores Premium (Dark Navy, Gold/Bronze accents, Glass effects)
-- [ ] Refatorar `Layout.tsx` para usar sidebar flutuante ou minimalista com efeito de vidro
-- [ ] Refatorar `Dashboard.tsx` para usar cards translúcidos e tipografia editorial
-- [ ] Refatorar `References.tsx` para uma experiência de upload mais imersiva
-- [ ] Refatorar `Scripts.tsx` e adicionar funcionalidade de **Teleprompter**
-- [ ] Atualizar textos e branding para "AURA" em toda a aplicação
+- [ ] Criar página `Pricing.tsx` com os planos Starter, Creator e Authority
+- [ ] Adicionar rota `/pricing` no `App.tsx`
+- [ ] Adicionar link "Planos" no menu lateral em `Layout.tsx`
+- [ ] Estilizar cards de preço com destaque para o plano "Creator" (efeito neon/glow)
