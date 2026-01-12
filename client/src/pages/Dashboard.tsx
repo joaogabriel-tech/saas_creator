@@ -60,7 +60,7 @@ export default function Dashboard() {
           <div className="aspect-[16/9] w-full rounded-3xl relative overflow-hidden group shadow-xl shadow-indigo-900/5">
             <div className="absolute inset-0 bg-gradient-to-br from-primary to-indigo-600 mix-blend-multiply opacity-90 transition-opacity group-hover:opacity-100"></div>
             <img 
-              src="/images/aura-hero.png" 
+              src="/images/artificial-brain.png" 
               alt="AURA Intelligence" 
               className="object-cover w-full h-full mix-blend-overlay opacity-50 transition-transform duration-1000 group-hover:scale-105"
             />

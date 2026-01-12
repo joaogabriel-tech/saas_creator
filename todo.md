@@ -4,3 +4,5 @@
 - [ ] Atualizar `Dashboard.tsx` removendo elementos escuros e simplificando cards
 - [ ] Atualizar `Pricing.tsx` para estilo clean com sombras suaves
 - [ ] Atualizar `References.tsx` e `Scripts.tsx` para consistência visual
+- [ ] Gerar imagem `artificial-brain.png` para o card de Insight Diário
+- [ ] Atualizar `Dashboard.tsx` para usar a nova imagem
