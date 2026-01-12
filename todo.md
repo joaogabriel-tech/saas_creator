@@ -6,3 +6,5 @@
 - [ ] Atualizar `References.tsx` e `Scripts.tsx` para consistência visual
 - [ ] Gerar imagem `artificial-brain.png` para o card de Insight Diário
 - [ ] Atualizar `Dashboard.tsx` para usar a nova imagem
+- [ ] Adicionar animação `animate-pulse-slow` no `index.css`
+- [ ] Aplicar classe de animação na imagem do cérebro em `Dashboard.tsx`

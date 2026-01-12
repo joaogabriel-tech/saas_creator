@@ -62,7 +62,7 @@ export default function Dashboard() {
             <img 
               src="/images/artificial-brain.png" 
               alt="AURA Intelligence" 
-              className="object-cover w-full h-full mix-blend-overlay opacity-50 transition-transform duration-1000 group-hover:scale-105"
+              className="object-cover w-full h-full mix-blend-overlay opacity-50 animate-pulse-slow"
             />
             <div className="absolute inset-0 flex flex-col justify-end p-10">
               <div className="transform transition-transform duration-500 translate-y-2 group-hover:translate-y-0">
