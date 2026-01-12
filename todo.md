@@ -8,3 +8,5 @@
 - [ ] Atualizar `Dashboard.tsx` para usar a nova imagem
 - [ ] Adicionar animação `animate-pulse-slow` no `index.css`
 - [ ] Aplicar classe de animação na imagem do cérebro em `Dashboard.tsx`
+- [ ] Gerar logo `kryo-brain-logo.png` (Conceito: Cérebro Minimalista Tech)
+- [ ] Gerar logo `kryo-luxury-logo.png` (Conceito: Luxo Minimalista)
