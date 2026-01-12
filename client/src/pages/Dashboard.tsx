@@ -8,21 +8,21 @@ export default function Dashboard() {
     <div className="space-y-10">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
-          <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-white mb-2">
+          <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-white mb-2" style={{fontSize: '42px', fontWeight: '100', fontFamily: 'Canela'}}>
             Bem-vindo, <span className="text-gradient-gold">João</span>
           </h2>
-          <p className="text-muted-foreground font-sans text-lg max-w-xl">
+          <p className="text-muted-foreground font-sans text-lg max-w-xl" style={{color: '#ffffff'}}>
             Sua aura digital está radiante hoje. O índice de consistência da sua persona subiu para 94%.
           </p>
         </div>
         <div className="flex gap-3">
           <Link href="/references">
-            <Button variant="outline" className="glass-button rounded-full px-6 h-12 border-white/10 text-white hover:text-primary hover:border-primary/50">
+            <Button variant="outline" className="glass-button rounded-full px-6 h-12 border-white/10 text-white hover:text-primary hover:border-primary/50" style={{color: '#c800ff', backgroundColor: '#000000'}}>
               Adicionar Referência
             </Button>
           </Link>
           <Link href="/scripts">
-            <Button className="rounded-full bg-primary text-black hover:bg-primary/90 h-12 px-8 font-bold shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all hover:scale-105">
+            <Button className="rounded-full bg-primary text-black hover:bg-primary/90 h-12 px-8 font-bold shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all hover:scale-105" style={{backgroundColor: '#a600ff'}}>
               <Sparkles className="w-4 h-4 mr-2" />
               Gerar Roteiro
             </Button>
