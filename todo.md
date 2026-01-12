@@ -1,4 +1,6 @@
-- [ ] Criar página `Pricing.tsx` com os planos Starter, Creator e Authority
-- [ ] Adicionar rota `/pricing` no `App.tsx`
-- [ ] Adicionar link "Planos" no menu lateral em `Layout.tsx`
-- [ ] Estilizar cards de preço com destaque para o plano "Creator" (efeito neon/glow)
+- [ ] Atualizar `index.css` com paleta de cores clara (Soft Minimalist)
+- [ ] Trocar fontes no `index.html` para Inter/Geist (mais clean e moderna)
+- [ ] Refatorar `Layout.tsx` para remover sidebar de vidro e usar navegação lateral limpa
+- [ ] Atualizar `Dashboard.tsx` removendo elementos escuros e simplificando cards
+- [ ] Atualizar `Pricing.tsx` para estilo clean com sombras suaves
+- [ ] Atualizar `References.tsx` e `Scripts.tsx` para consistência visual
