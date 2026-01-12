@@ -81,7 +81,7 @@ export default function Dashboard() {
                 <Play className="w-7 h-7" />
               </div>
               <h3 className="font-bold font-display text-xl text-foreground group-hover:text-primary transition-colors">Nova Análise</h3>
-              <p className="text-sm text-muted-foreground mt-2 font-medium">Importar do YouTube</p>
+              <p className="text-sm text-muted-foreground mt-2 font-medium">Identificação completa</p>
             </div>
             <div className="bg-white p-8 rounded-3xl soft-shadow border border-border/50 hover:border-primary/30 transition-all cursor-pointer group hover:-translate-y-1">
               <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform text-emerald-600">
