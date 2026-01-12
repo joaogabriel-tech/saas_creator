@@ -2,6 +2,7 @@ import { Check, Sparkles, Zap, Crown, ShieldCheck, ArrowRight } from "lucide-rea
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ExitIntentPopup } from "@/components/ExitIntentPopup";
 
 export default function Pricing() {
   const plans = [
@@ -61,6 +62,7 @@ export default function Pricing() {
 
   return (
     <div className="space-y-16 py-8">
+      <ExitIntentPopup />
       <div className="text-center space-y-6 max-w-3xl mx-auto">
         <Badge variant="outline" className="px-4 py-1.5 rounded-full border-primary/20 bg-primary/5 text-primary font-medium tracking-wide mb-4">
           <ShieldCheck className="w-3.5 h-3.5 mr-2" />
