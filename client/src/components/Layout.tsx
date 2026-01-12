@@ -8,7 +8,8 @@ import {
   Plus,
   Sparkles,
   Menu,
-  CreditCard
+  CreditCard,
+  Lightbulb
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -20,6 +21,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const navItems = [
     { icon: LayoutDashboard, label: "Dashboard", href: "/" },
     { icon: Video, label: "Referências", href: "/references" },
+    { icon: Lightbulb, label: "Ideias", href: "/ideas" },
     { icon: FileText, label: "Roteiros", href: "/scripts" },
     { icon: CreditCard, label: "Planos", href: "/pricing" },
     { icon: Settings, label: "Configurações", href: "/settings" },
