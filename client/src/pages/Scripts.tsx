@@ -176,7 +176,7 @@ Comenta aqui embaixo: qual é o seu maior gargalo financeiro hoje?
                 </TabsList>
               </Tabs>
               
-              <div className="flex gap-2">
+              <div className="flex gap-3">
                 {generatedScript && (
                   <Dialog open={isTeleprompterOpen} onOpenChange={setIsTeleprompterOpen}>
                     <DialogTrigger asChild>
