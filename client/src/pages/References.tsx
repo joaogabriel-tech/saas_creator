@@ -29,8 +29,13 @@ export default function References() {
     { id: 2, title: "3 Dicas Rápidas de Foco", channel: "Eslen Delanogare", duration: "00:59", type: "shorts", status: "analyzed", date: "11 Jan 2026" },
   ]);
 
-
-  const analyzeReferenceMutation = trpc.manus.analyzeReference.useMutation();
+  const utils = trpc.useUtils();
+  const analyzeReferenceMutation = trpc.manus.analyzeReference.useMutation({
+    onSuccess: () => {
+      // Invalidar query de créditos para atualizar saldo
+      utils.credits.getBalance.invalidate();
+    },
+  });
 
   const handleAnalyze = async () => {
     if (!url) {
@@ -75,7 +80,7 @@ export default function References() {
         )
       );
 
-      toast.success(`✅ Análise concluída! Créditos usados: ${result.creditUsage}`);
+      toast.success(`✅ Análise concluída! Créditos usados: ${result.creditUsage}. Novo saldo: ${result.newBalance}`);
 
       // Limpar campos opcionais
       setNiche("");
@@ -90,7 +95,20 @@ export default function References() {
         )
       );
 
-      toast.error(error.message || "Não foi possível analisar o vídeo. Tente novamente.");
+      const errorMessage = error.message || "Não foi possível analisar o vídeo. Tente novamente.";
+      
+      // Verificar se é erro de créditos insuficientes
+      if (errorMessage.includes("Créditos insuficientes")) {
+        toast.error(errorMessage, {
+          duration: 5000,
+          action: {
+            label: "Ver Planos",
+            onClick: () => window.location.href = "/planos",
+          },
+        });
+      } else {
+        toast.error(errorMessage);
+      }
     }
   };
 

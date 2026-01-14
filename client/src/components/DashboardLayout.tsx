@@ -21,11 +21,13 @@ import {
 } from "@/components/ui/sidebar";
 import { getLoginUrl } from "@/const";
 import { useIsMobile } from "@/hooks/useMobile";
-import { LayoutDashboard, LogOut, PanelLeft, Users } from "lucide-react";
+import { LayoutDashboard, LogOut, PanelLeft, Users, Zap } from "lucide-react";
+import { trpc } from "@/lib/trpc";
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
 import { DashboardLayoutSkeleton } from './DashboardLayoutSkeleton';
 import { Button } from "./ui/button";
+import { Skeleton } from "./ui/skeleton";
 
 const menuItems = [
   { icon: LayoutDashboard, label: "Page 1", path: "/" },
@@ -201,7 +203,8 @@ function DashboardLayoutContent({
             </SidebarMenu>
           </SidebarContent>
 
-          <SidebarFooter className="p-3">
+          <SidebarFooter className="p-3 space-y-3">
+            <CreditBalance />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="flex items-center gap-3 rounded-lg px-1 py-1 hover:bg-accent/50 transition-colors w-full text-left group-data-[collapsible=icon]:justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
@@ -260,5 +263,39 @@ function DashboardLayoutContent({
         <main className="flex-1 p-4">{children}</main>
       </SidebarInset>
     </>
+  );
+}
+
+/**
+ * Componente para exibir saldo de créditos
+ */
+function CreditBalance() {
+  const { data, isLoading } = trpc.credits.getBalance.useQuery();
+  const { state } = useSidebar();
+  const isCollapsed = state === "collapsed";
+
+  if (isLoading) {
+    return (
+      <div className="px-2 py-2 rounded-lg bg-accent/30">
+        <Skeleton className="h-4 w-20" />
+      </div>
+    );
+  }
+
+  if (!data) return null;
+
+  return (
+    <div className="px-2 py-2 rounded-lg bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 group-data-[collapsible=icon]:px-1">
+      <div className="flex items-center gap-2 group-data-[collapsible=icon]:justify-center">
+        <Zap className="h-4 w-4 text-primary shrink-0" />
+        {!isCollapsed && (
+          <div className="flex-1 min-w-0">
+            <p className="text-xs font-medium text-primary">
+              {data.currentBalance.toLocaleString()} créditos
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }

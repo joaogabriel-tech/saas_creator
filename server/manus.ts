@@ -8,7 +8,8 @@
  */
 
 import { z } from "zod";
-import { publicProcedure, router } from "./_core/trpc";
+import { protectedProcedure, router } from "./_core/trpc";
+import { requireCredits, deductCredits, CREDIT_COSTS } from "./credits";
 
 // Configuração da API Manus
 const MANUS_API_URL = "https://api.manus.im/v1";
@@ -151,7 +152,7 @@ export const manusRouter = router({
   /**
    * Analisar vídeo de criador de referência
    */
-  analyzeReference: publicProcedure
+  analyzeReference: protectedProcedure
     .input(
       z.object({
         videoUrl: z.string().url("URL do vídeo inválida"),
@@ -159,7 +160,9 @@ export const manusRouter = router({
         creatorName: z.string().optional(),
       })
     )
-    .mutation(async ({ input }) => {
+    .mutation(async ({ input, ctx }) => {
+      // Validar créditos antes de executar
+      await requireCredits(ctx.user.id, CREDIT_COSTS.ANALYZE_REFERENCE);
       console.log(`[Manus] Iniciando análise de referência:`, { videoUrl: input.videoUrl, niche: input.niche, creatorName: input.creatorName });
       
       // Construir prompt contextualizado
@@ -201,18 +204,23 @@ Forneça uma análise detalhada e estruturada que possa ser usada para replicar 
       // Extrair análise
       const analysis = extractAssistantResponse(completedTask);
 
+      // Deduzir créditos após sucesso
+      const newBalance = await deductCredits(ctx.user.id, CREDIT_COSTS.ANALYZE_REFERENCE);
+      console.log(`[Manus] Créditos deduzidos. Novo saldo: ${newBalance}`);
+
       return {
         success: true,
         taskId: createResponse.task_id,
         analysis,
-        creditUsage: completedTask.credit_usage || 0,
+        creditUsage: CREDIT_COSTS.ANALYZE_REFERENCE,
+        newBalance,
       };
     }),
 
   /**
    * Gerar roteiro baseado em análise de referência
    */
-  generateScript: publicProcedure
+  generateScript: protectedProcedure
     .input(
       z.object({
         theme: z.string().min(3, "Tema muito curto"),
@@ -221,7 +229,9 @@ Forneça uma análise detalhada e estruturada que possa ser usada para replicar 
         duration: z.enum(["short", "medium", "long"]).optional(),
       })
     )
-    .mutation(async ({ input }) => {
+    .mutation(async ({ input, ctx }) => {
+      // Validar créditos antes de executar
+      await requireCredits(ctx.user.id, CREDIT_COSTS.GENERATE_SCRIPT);
       const durationGuide = {
         short: "30-60 segundos (ideal para Shorts/Reels)",
         medium: "3-5 minutos (vídeo padrão YouTube)",
@@ -264,25 +274,31 @@ Formate o roteiro de forma clara e pronta para gravação.
       // Extrair roteiro
       const script = extractAssistantResponse(completedTask);
 
+      // Deduzir créditos após sucesso
+      const newBalance = await deductCredits(ctx.user.id, CREDIT_COSTS.GENERATE_SCRIPT);
+
       return {
         success: true,
         taskId: createResponse.task_id,
         script,
-        creditUsage: completedTask.credit_usage || 0,
+        creditUsage: CREDIT_COSTS.GENERATE_SCRIPT,
+        newBalance,
       };
     }),
 
   /**
    * Buscar tendências diárias para geração de ideias
    */
-  getDailyTrends: publicProcedure
+  getDailyTrends: protectedProcedure
     .input(
       z.object({
         niche: z.string().optional(),
         count: z.number().min(1).max(20).default(10),
       })
     )
-    .mutation(async ({ input }) => {
+    .mutation(async ({ input, ctx }) => {
+      // Validar créditos antes de executar
+      await requireCredits(ctx.user.id, CREDIT_COSTS.GET_DAILY_TRENDS);
       const prompt = `
 Liste ${input.count} tendências de conteúdo em alta HOJE (${new Date().toLocaleDateString("pt-BR")}) ${input.niche ? `no nicho de ${input.niche}` : "em geral"}.
 
@@ -349,24 +365,28 @@ Formate a resposta como JSON array:
         ];
       }
 
+      // Deduzir créditos após sucesso
+      const newBalance = await deductCredits(ctx.user.id, CREDIT_COSTS.GET_DAILY_TRENDS);
+
       return {
         success: true,
         taskId: createResponse.task_id,
         trends,
-        creditUsage: completedTask.credit_usage || 0,
+        creditUsage: CREDIT_COSTS.GET_DAILY_TRENDS,
+        newBalance,
       };
     }),
 
   /**
    * Verificar status de uma tarefa específica
    */
-  getTaskStatus: publicProcedure
+  getTaskStatus: protectedProcedure
     .input(
       z.object({
         taskId: z.string(),
       })
     )
-    .query(async ({ input }) => {
+    .query(async ({ input, ctx }) => {
       const status = await callManusAPI<ManusTaskStatus>(`/tasks/${input.taskId}`, {
         method: "GET",
       });

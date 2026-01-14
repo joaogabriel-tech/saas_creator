@@ -8,6 +8,13 @@
       "when": 1768270191644,
       "tag": "0000_naive_mastermind",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1768428892785,
+      "tag": "0001_silly_red_shift",
+      "breakpoints": true
     }
   ]
 }

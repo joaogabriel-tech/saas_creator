@@ -67,3 +67,15 @@
 - [ ] Dashboard com métricas e insights
 - [ ] Sistema de créditos e planos
 - [ ] Autenticação e perfis de usuário
+
+## ✅ Sistema de Autenticação e Créditos (Concluído)
+- [x] Atualizar schema do banco com campo `credits` na tabela `user`
+- [x] Adicionar campo `creditsUsed` para estatísticas
+- [x] Criar migration para adicionar campos
+- [x] Implementar lógica de validação de créditos no backend
+- [x] Criar middleware `requireCredits` para proteção de endpoints
+- [x] Implementar dedução automática de créditos após operações
+- [x] Atualizar frontend para exibir saldo de créditos na sidebar
+- [x] Adicionar mensagens de erro quando créditos insuficientes
+- [x] Criar testes vitest para fluxo de créditos (7 testes passando)
+- [x] Documentar sistema de créditos
