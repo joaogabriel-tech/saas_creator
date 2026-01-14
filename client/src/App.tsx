@@ -10,8 +10,8 @@ import References from "./pages/References";
 import Scripts from "@/pages/Scripts";
 import Ideas from "@/pages/Ideas";
 import Pricing from "./pages/Pricing";
-
 function Router() {
+  // make sure to consider if you need authentication for certain routes
   return (
     <Layout>
       <Switch>
