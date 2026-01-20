@@ -126,3 +126,15 @@
 - [x] Fazer card clicável para navegar até /projects
 - [x] Card mostra contagem real de projetos do usuário
 - [x] Card de Créditos AURA mostra saldo real
+
+## ✅ Dashboard Isolado por Projeto
+- [x] Criar ProjectLayout com navegação contextual (Dashboard, Referências, Ideias, Roteiros)
+- [x] Implementar página ProjectDashboard com estatísticas do projeto
+- [x] Criar rotas aninhadas `/project/:id/dashboard`, `/project/:id/references`, etc
+- [x] Atualizar botão "Selecionar Projeto" para navegar ao dashboard do projeto
+- [x] Implementar botão "Voltar para Projetos" no ProjectLayout
+- [x] Cards de estatísticas clicáveis para navegarção rápida
+- [x] Sidebar responsiva com menu mobile
+- [ ] Adaptar página de Referências para funcionar dentro do contexto do projeto
+- [ ] Adaptar página de Ideias para funcionar dentro do contexto do projeto
+- [ ] Adaptar página de Roteiros para funcionar dentro do contexto do projeto

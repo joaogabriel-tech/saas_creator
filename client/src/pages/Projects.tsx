@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -43,9 +44,12 @@ export default function Projects() {
     }
   };
 
+  const [, setLocation] = useLocation();
+
   const handleSelectProject = (project: typeof projects[0]) => {
     setActiveProject(project);
     toast.success(`Projeto "${project.name}" selecionado!`);
+    setLocation(`/project/${project.id}/dashboard`);
   };
 
   if (isLoading) {
