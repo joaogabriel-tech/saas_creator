@@ -14,9 +14,12 @@ import {
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { NewProjectDialog } from "@/components/NewProjectDialog";
+import { useState } from "react";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
+  const [isNewProjectDialogOpen, setIsNewProjectDialogOpen] = useState(false);
 
   const navItems = [
     { icon: LayoutDashboard, label: "Dashboard", href: "/" },
@@ -37,7 +40,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </div>
 
       <div className="space-y-8 flex-1">
-        <Button className="w-full justify-start gap-3 rounded-xl h-12 font-medium shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all hover:-translate-y-0.5">
+        <Button 
+          onClick={() => setIsNewProjectDialogOpen(true)}
+          className="w-full justify-start gap-3 rounded-xl h-12 font-medium shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all hover:-translate-y-0.5"
+        >
           <Plus className="w-5 h-5" />
           Novo Projeto
         </Button>
@@ -128,6 +134,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {children}
         </div>
       </main>
+      
+      {/* New Project Dialog */}
+      <NewProjectDialog 
+        open={isNewProjectDialogOpen} 
+        onOpenChange={setIsNewProjectDialogOpen} 
+      />
     </div>
   );
 }

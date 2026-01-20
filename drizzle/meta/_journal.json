@@ -15,6 +15,13 @@
       "when": 1768428892785,
       "tag": "0001_silly_red_shift",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1768943618971,
+      "tag": "0002_whole_madelyne_pryor",
+      "breakpoints": true
     }
   ]
 }

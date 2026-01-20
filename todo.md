@@ -102,3 +102,20 @@
 
 ## ✅ Correções de Bugs
 - [x] Corrigir erro de acessibilidade: DialogContent sem DialogTitle
+
+## 🎭 Sistema de Projetos/Personas (Em Progresso)
+- [x] Criar tabela `projects` no schema do banco
+- [x] Criar tabelas `references`, `ideas`, `scripts` com relacionamento a projetos
+- [x] Implementar backend tRPC para CRUD de projetos
+- [x] Criar ProjectContext para gerenciar projeto ativo globalmente
+- [x] Implementar modal de criação de novo projeto
+- [x] Implementar página de listagem de projetos
+- [x] Conectar botão "Novo Projeto" ao modal
+- [x] Implementar exclusão de projetos com confirmação
+- [ ] Adicionar seletor de projeto ativo no header/sidebar
+- [ ] Atualizar página de Referências para filtrar por projeto
+- [ ] Atualizar página de Ideias para filtrar por projeto
+- [ ] Atualizar página de Roteiros para filtrar por projeto
+- [ ] Atualizar Dashboard para mostrar métricas do projeto ativo
+- [ ] Implementar edição de projetos
+- [ ] Criar testes vitest para fluxo de projetos

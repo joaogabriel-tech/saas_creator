@@ -29,4 +29,75 @@ export const users = mysqlTable("users", {
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
-// TODO: Add your tables here
+/**
+ * Projects table - Each project represents a persona/niche
+ */
+export const projects = mysqlTable("projects", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  name: varchar("name", { length: 255 }).notNull(),
+  persona: varchar("persona", { length: 255 }).notNull(), // Ex: "DJ de Funk", "Expert de Design"
+  description: text("description"),
+  avatar: text("avatar"), // URL da imagem do avatar
+  color: varchar("color", { length: 7 }).default("#3b82f6"), // Cor hex para identificação visual
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Project = typeof projects.$inferSelect;
+export type InsertProject = typeof projects.$inferInsert;
+
+/**
+ * References table - Video references analyzed per project
+ */
+export const references = mysqlTable("references", {
+  id: int("id").autoincrement().primaryKey(),
+  projectId: int("projectId").notNull(),
+  userId: int("userId").notNull(),
+  videoUrl: text("videoUrl").notNull(),
+  creatorName: varchar("creatorName", { length: 255 }),
+  niche: varchar("niche", { length: 255 }),
+  analysis: text("analysis"), // JSON string com a análise completa
+  status: mysqlEnum("status", ["processing", "completed", "error"]).default("processing").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type Reference = typeof references.$inferSelect;
+export type InsertReference = typeof references.$inferInsert;
+
+/**
+ * Ideas table - Content ideas generated per project
+ */
+export const ideas = mysqlTable("ideas", {
+  id: int("id").autoincrement().primaryKey(),
+  projectId: int("projectId").notNull(),
+  userId: int("userId").notNull(),
+  title: varchar("title", { length: 500 }).notNull(),
+  description: text("description"),
+  viralScore: int("viralScore"), // Score de 0-100
+  source: varchar("source", { length: 100 }), // "daily_trends", "manual", etc
+  isFavorite: int("isFavorite").default(0).notNull(), // Boolean as int
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type Idea = typeof ideas.$inferSelect;
+export type InsertIdea = typeof ideas.$inferInsert;
+
+/**
+ * Scripts table - Generated scripts per project
+ */
+export const scripts = mysqlTable("scripts", {
+  id: int("id").autoincrement().primaryKey(),
+  projectId: int("projectId").notNull(),
+  userId: int("userId").notNull(),
+  title: varchar("title", { length: 500 }).notNull(),
+  content: text("content").notNull(),
+  format: varchar("format", { length: 50 }), // "youtube", "shorts", "reels"
+  tone: varchar("tone", { length: 100 }), // "educar", "entreter", "inspirar"
+  referenceId: int("referenceId"), // Opcional: script baseado em referência específica
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Script = typeof scripts.$inferSelect;
+export type InsertScript = typeof scripts.$inferInsert;
