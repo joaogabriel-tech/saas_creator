@@ -110,8 +110,30 @@ async function waitForTaskCompletion(
     }
 
     if (status.status === "failed") {
-      console.error(`[Manus] ❌ Tarefa falhou:`, status.error);
-      throw new Error(status.error || "Tarefa falhou sem mensagem de erro");
+      console.error(`[Manus] ❌ Tarefa falhou!`);
+      console.error(`[Manus] Status completo:`, JSON.stringify(status, null, 2));
+      
+      // Tentar extrair mensagem de erro de várias fontes
+      let errorMessage = status.error;
+      
+      // Se não houver erro no campo error, tentar buscar no output
+      if (!errorMessage && status.output && status.output.length > 0) {
+        const lastOutput = status.output[status.output.length - 1];
+        if (lastOutput.content && lastOutput.content.length > 0) {
+          const textContent = lastOutput.content.find(c => c.type === "output_text");
+          if (textContent && textContent.text) {
+            errorMessage = `Erro na execução: ${textContent.text.substring(0, 200)}`;
+          }
+        }
+      }
+      
+      // Mensagem genérica se nada foi encontrado
+      if (!errorMessage) {
+        errorMessage = "A análise falhou. Isso pode ocorrer se o vídeo for privado, muito longo ou tiver restrições. Tente com outro vídeo.";
+      }
+      
+      console.error(`[Manus] Mensagem de erro:`, errorMessage);
+      throw new Error(errorMessage);
     }
 
     // Aguardar antes de tentar novamente

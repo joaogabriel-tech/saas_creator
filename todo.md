@@ -161,3 +161,12 @@
 - [ ] Testar fluxo completo com vídeo real
 - [ ] Validar salvamento no banco de dados
 - [ ] Verificar exibição de referências salvas
+
+## ✅ Correção: Tarefa Falhou Sem Mensagem
+- [x] Verificar logs do servidor durante falha
+- [x] Melhorar tratamento de status "failed" no waitForTaskCompletion
+- [x] Adicionar logs detalhados do objeto de status completo
+- [x] Retornar mensagem de erro mais descritiva ao frontend
+- [x] Tentar extrair erro do campo output se error estiver vazio
+- [x] Adicionar mensagem genérica amigável para usuário
+- [ ] Testar com vídeo público curto (1-3 min)
