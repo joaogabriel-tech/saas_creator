@@ -138,3 +138,18 @@
 - [ ] Adaptar página de Referências para funcionar dentro do contexto do projeto
 - [ ] Adaptar página de Ideias para funcionar dentro do contexto do projeto
 - [ ] Adaptar página de Roteiros para funcionar dentro do contexto do projeto
+
+## ✅ Referências por Projeto
+- [x] Criar router tRPC `referencesRouter` para CRUD de referências
+- [x] Endpoint `list` filtrando por projectId
+- [x] Endpoint `create` salvando referência associada ao projeto
+- [x] Endpoint `delete` para remover referência
+- [x] Endpoint `getById` para buscar referência específica
+- [x] Criar página ProjectReferences adaptada do References.tsx
+- [x] Integrar análise de vídeos salvando no banco com projectId
+- [x] Atualizar rota /project/:id/references no App.tsx
+- [x] Formulário com tabs (YouTube, Shorts/Reels)
+- [x] Biblioteca de referências com cards
+- [x] Botão de deletar referência com confirmação
+- [x] Link externo para abrir vídeo original
+- [x] Atualização automática de estatísticas do projeto

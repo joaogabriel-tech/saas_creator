@@ -13,13 +13,14 @@ import Ideas from "@/pages/Ideas";
 import Pricing from "./pages/Pricing";
 import Projects from "./pages/Projects";
 import ProjectDashboard from "./pages/ProjectDashboard";
+import ProjectReferences from "./pages/ProjectReferences";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       {/* Project Routes (without Layout) */}
       <Route path="/project/:id/dashboard" component={ProjectDashboard} />
-      <Route path="/project/:id/references" component={() => <div className="p-8 text-center">Referências do Projeto (Em Breve)</div>} />
+      <Route path="/project/:id/references" component={ProjectReferences} />
       <Route path="/project/:id/ideas" component={() => <div className="p-8 text-center">Ideias do Projeto (Em Breve)</div>} />
       <Route path="/project/:id/scripts" component={() => <div className="p-8 text-center">Roteiros do Projeto (Em Breve)</div>} />
       
