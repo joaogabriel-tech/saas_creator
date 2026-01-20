@@ -6,23 +6,23 @@ import { Link } from "wouter";
 export default function Dashboard() {
   return (
     <div className="space-y-12">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div className="flex flex-col gap-6">
         <div>
-          <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-foreground mb-3">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight text-foreground mb-3">
             Olá, <span className="text-primary">João Gabriel</span>
           </h2>
-          <p className="text-muted-foreground font-sans text-lg max-w-xl leading-relaxed">
+          <p className="text-muted-foreground font-sans text-base sm:text-lg max-w-xl leading-relaxed">
             Sua consistência está excelente. O DNA da sua persona atingiu <span className="font-semibold text-foreground">94% de fidelidade</span>.
           </p>
         </div>
-        <div className="flex gap-3">
-          <Link href="/references">
-            <Button variant="outline" className="rounded-xl px-6 h-12 border-border bg-white hover:bg-secondary text-foreground font-medium shadow-sm hover:shadow-md transition-all">
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Link href="/references" className="flex-1 sm:flex-initial">
+            <Button variant="outline" className="w-full sm:w-auto rounded-xl px-6 h-12 border-border bg-white hover:bg-secondary text-foreground font-medium shadow-sm hover:shadow-md transition-all">
               Adicionar Referência
             </Button>
           </Link>
-          <Link href="/scripts">
-            <Button className="rounded-xl bg-primary text-white hover:bg-primary/90 h-12 px-8 font-bold shadow-lg shadow-primary/25 transition-all hover:-translate-y-0.5 hover:shadow-primary/40">
+          <Link href="/scripts" className="flex-1 sm:flex-initial">
+            <Button className="w-full sm:w-auto rounded-xl bg-primary text-white hover:bg-primary/90 h-12 px-8 font-bold shadow-lg shadow-primary/25 transition-all hover:-translate-y-0.5 hover:shadow-primary/40">
               <Sparkles className="w-4 h-4 mr-2" />
               Gerar Roteiro
             </Button>
@@ -31,7 +31,7 @@ export default function Dashboard() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {[
           { title: "Total de Projetos", value: "12", sub: "+2 essa semana", icon: FileText },
           { title: "Referências Analisadas", value: "48", sub: "15h processadas", icon: Play },
@@ -54,9 +54,9 @@ export default function Dashboard() {
       </div>
 
       {/* Main Content Area */}
-      <div className="grid gap-8 md:grid-cols-7">
+      <div className="grid gap-6 lg:gap-8 lg:grid-cols-7">
         {/* Hero Insight */}
-        <div className="md:col-span-4 space-y-6">
+        <div className="lg:col-span-4 space-y-6">
           <div className="aspect-[16/9] w-full rounded-3xl relative overflow-hidden group shadow-xl shadow-indigo-900/5">
             <div className="absolute inset-0 bg-gradient-to-br from-primary to-indigo-600 mix-blend-multiply opacity-90 transition-opacity group-hover:opacity-100"></div>
             <img 
@@ -64,26 +64,26 @@ export default function Dashboard() {
               alt="AURA Intelligence" 
               className="object-cover w-full h-full mix-blend-overlay opacity-50 animate-pulse-slow"
             />
-            <div className="absolute inset-0 flex flex-col justify-end p-10">
+            <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8 md:p-10">
               <div className="transform transition-transform duration-500 translate-y-2 group-hover:translate-y-0">
                 <span className="inline-block px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold mb-4 backdrop-blur-md border border-white/20">INSIGHT DIÁRIO</span>
-                <h3 className="text-white font-display font-bold text-3xl mb-3 leading-tight">Tendência: Slow Productivity</h3>
-                <p className="text-white/90 text-base max-w-md font-sans leading-relaxed">
+                <h3 className="text-white font-display font-bold text-2xl sm:text-3xl mb-3 leading-tight">Tendência: Slow Productivity</h3>
+                <p className="text-white/90 text-sm sm:text-base max-w-md font-sans leading-relaxed">
                   Sua persona está alinhada com a nova onda de produtividade consciente. Recomendamos criar conteúdo sobre "Fazer menos, mas melhor".
                 </p>
               </div>
             </div>
           </div>
           
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-white p-8 rounded-3xl soft-shadow border border-border/50 hover:border-primary/30 transition-all cursor-pointer group hover:-translate-y-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            <div className="bg-white p-6 sm:p-8 rounded-3xl soft-shadow border border-border/50 hover:border-primary/30 transition-all cursor-pointer group hover:-translate-y-1">
               <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform text-primary">
                 <Play className="w-7 h-7" />
               </div>
               <h3 className="font-bold font-display text-xl text-foreground group-hover:text-primary transition-colors">Nova Análise</h3>
               <p className="text-sm text-muted-foreground mt-2 font-medium">Identificação completa</p>
             </div>
-            <div className="bg-white p-8 rounded-3xl soft-shadow border border-border/50 hover:border-primary/30 transition-all cursor-pointer group hover:-translate-y-1">
+            <div className="bg-white p-6 sm:p-8 rounded-3xl soft-shadow border border-border/50 hover:border-primary/30 transition-all cursor-pointer group hover:-translate-y-1">
               <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform text-emerald-600">
                 <FileText className="w-7 h-7" />
               </div>
@@ -94,9 +94,9 @@ export default function Dashboard() {
         </div>
 
         {/* Recent Scripts List */}
-        <div className="md:col-span-3">
+        <div className="lg:col-span-3">
           <Card className="soft-card border-0 bg-white h-full flex flex-col shadow-xl shadow-indigo-900/5">
-            <CardHeader className="pb-6 pt-8 px-8">
+            <CardHeader className="pb-4 sm:pb-6 pt-6 sm:pt-8 px-6 sm:px-8">
               <CardTitle className="font-display text-xl flex items-center justify-between text-foreground">
                 Roteiros Recentes
                 <Button variant="ghost" size="sm" className="text-xs font-bold text-primary hover:bg-primary/10 hover:text-primary">VER TODOS</Button>
@@ -111,12 +111,12 @@ export default function Dashboard() {
                   { title: "Minha rotina matinal", date: "08 Jan, 16:30", status: "Pronto", color: "bg-emerald-100 text-emerald-700" },
                   { title: "Vlog de Viagem: Japão", date: "05 Jan, 11:00", status: "Arquivado", color: "bg-secondary text-muted-foreground" },
                 ].map((item, i) => (
-                  <div key={i} className="p-6 hover:bg-secondary/30 transition-colors flex items-center justify-between group cursor-pointer">
+                  <div key={i} className="p-4 sm:p-6 hover:bg-secondary/30 transition-colors flex items-center justify-between group cursor-pointer">
                     <div>
                       <h4 className="font-bold text-base text-foreground group-hover:text-primary transition-colors font-display">{item.title}</h4>
                       <p className="text-xs text-muted-foreground mt-1.5 font-medium">{item.date}</p>
                     </div>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2 sm:gap-4">
                       <span className={`text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full ${item.color}`}>
                         {item.status}
                       </span>

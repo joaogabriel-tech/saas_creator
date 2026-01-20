@@ -119,42 +119,42 @@ export default function References() {
 
   return (
     <div className="space-y-10">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div className="flex flex-col gap-4">
         <div>
-          <h2 className="text-4xl font-display font-bold tracking-tight text-foreground">Referências</h2>
-          <p className="text-muted-foreground font-sans text-lg mt-2">Alimente a KRYO com o DNA dos seus criadores favoritos.</p>
+          <h2 className="text-3xl sm:text-4xl font-display font-bold tracking-tight text-foreground">Referências</h2>
+          <p className="text-muted-foreground font-sans text-base sm:text-lg mt-2">Alimente a KRYO com o DNA dos seus criadores favoritos.</p>
         </div>
       </div>
 
-      <div className="grid gap-8 lg:grid-cols-3">
+      <div className="grid gap-6 lg:gap-8 lg:grid-cols-3">
         {/* Input Section */}
-        <div className="lg:col-span-2 space-y-8">
+        <div className="lg:col-span-2 space-y-6 lg:space-y-8">
           <Card className="border-0 bg-white overflow-hidden relative shadow-lg">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-indigo-400 to-primary opacity-50"></div>
-            <CardHeader className="pb-2 pt-8 px-8">
+            <CardHeader className="pb-2 pt-6 sm:pt-8 px-6 sm:px-8">
               <CardTitle className="font-display text-xl text-foreground flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-primary" />
                 Nova Análise
               </CardTitle>
               <CardDescription className="text-muted-foreground font-sans">Escolha a fonte do conteúdo para extrair o DNA criativo.</CardDescription>
             </CardHeader>
-            <CardContent className="pt-6 px-8 pb-8">
+            <CardContent className="pt-6 px-6 sm:px-8 pb-6 sm:pb-8">
               <Tabs defaultValue="youtube" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 mb-8 bg-secondary/50 p-1.5 rounded-xl">
-                  <TabsTrigger value="shorts" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm text-muted-foreground font-medium transition-all gap-2">
-                    <Smartphone className="w-4 h-4" /> Shorts/Reels
+                <TabsList className="grid w-full grid-cols-3 mb-6 sm:mb-8 bg-secondary/50 p-1.5 rounded-xl">
+                  <TabsTrigger value="shorts" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm text-muted-foreground font-medium transition-all gap-1 sm:gap-2 text-xs sm:text-sm">
+                    <Smartphone className="w-4 h-4" /> <span className="hidden sm:inline">Shorts/Reels</span><span className="sm:hidden">Shorts</span>
                   </TabsTrigger>
-                  <TabsTrigger value="youtube" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm text-muted-foreground font-medium transition-all gap-2">
+                  <TabsTrigger value="youtube" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm text-muted-foreground font-medium transition-all gap-1 sm:gap-2 text-xs sm:text-sm">
                     <Youtube className="w-4 h-4" /> YouTube
                   </TabsTrigger>
-                  <TabsTrigger value="upload" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm text-muted-foreground font-medium transition-all gap-2">
+                  <TabsTrigger value="upload" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm text-muted-foreground font-medium transition-all gap-1 sm:gap-2 text-xs sm:text-sm">
                     <Upload className="w-4 h-4" /> Upload
                   </TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="shorts" className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
                   <div className="space-y-4">
-                    <div className="flex gap-3">
+                    <div className="flex flex-col sm:flex-row gap-3">
                       <div className="relative flex-1 group">
                         <div className="relative bg-secondary/30 border border-border rounded-xl flex items-center px-4 h-14 focus-within:border-primary/50 focus-within:bg-white focus-within:shadow-md transition-all duration-300">
                           <Smartphone className="w-5 h-5 text-pink-500 mr-3" />
@@ -167,7 +167,7 @@ export default function References() {
                         </div>
                       </div>
                       <Button 
-                        className="h-14 px-8 rounded-xl bg-primary text-white hover:bg-primary/90 font-bold shadow-lg shadow-primary/20 transition-all hover:scale-105 hover:shadow-primary/30"
+                        className="h-12 sm:h-14 px-6 sm:px-8 rounded-xl bg-primary text-white hover:bg-primary/90 font-bold shadow-lg shadow-primary/20 transition-all hover:scale-105 hover:shadow-primary/30 w-full sm:w-auto"
                         onClick={handleAnalyze}
                         disabled={analyzeReferenceMutation.isPending || !url}
                       >
@@ -176,7 +176,7 @@ export default function References() {
                     </div>
                     
                     {/* Campos opcionais */}
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <Input
                         placeholder="Nome do criador (opcional)"
                         value={creatorName}
@@ -198,7 +198,7 @@ export default function References() {
 
                 <TabsContent value="youtube" className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
                   <div className="space-y-4">
-                    <div className="flex gap-3">
+                    <div className="flex flex-col sm:flex-row gap-3">
                       <div className="relative flex-1 group">
                         <div className="relative bg-secondary/30 border border-border rounded-xl flex items-center px-4 h-14 focus-within:border-primary/50 focus-within:bg-white focus-within:shadow-md transition-all duration-300">
                           <Youtube className="w-5 h-5 text-red-500 mr-3" />
@@ -211,7 +211,7 @@ export default function References() {
                         </div>
                       </div>
                       <Button 
-                        className="h-14 px-8 rounded-xl bg-primary text-white hover:bg-primary/90 font-bold shadow-lg shadow-primary/20 transition-all hover:scale-105 hover:shadow-primary/30"
+                        className="h-12 sm:h-14 px-6 sm:px-8 rounded-xl bg-primary text-white hover:bg-primary/90 font-bold shadow-lg shadow-primary/20 transition-all hover:scale-105 hover:shadow-primary/30 w-full sm:w-auto"
                         onClick={handleAnalyze}
                         disabled={analyzeReferenceMutation.isPending || !url}
                       >
@@ -220,7 +220,7 @@ export default function References() {
                     </div>
 
                     {/* Campos opcionais */}
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <Input
                         placeholder="Nome do criador (opcional)"
                         value={creatorName}
@@ -272,7 +272,7 @@ export default function References() {
 
           {/* List of References */}
           <div className="space-y-6">
-            <h3 className="font-display font-bold text-xl text-foreground pl-3 border-l-4 border-primary">Biblioteca de Referências</h3>
+            <h3 className="font-display font-bold text-lg sm:text-xl text-foreground pl-3 border-l-4 border-primary">Biblioteca de Referências</h3>
             <div className="grid gap-4">
               {references.length === 0 ? (
                 <div className="text-center py-12 text-muted-foreground">
@@ -281,8 +281,8 @@ export default function References() {
                 </div>
               ) : (
                 references.map((ref) => (
-                  <div key={ref.id} className="group flex items-center gap-5 p-4 bg-white border border-border/50 rounded-2xl hover:border-primary/30 transition-all hover:shadow-lg hover:-translate-y-0.5">
-                    <div className="w-40 aspect-video bg-secondary rounded-xl relative overflow-hidden border border-border/50 group-hover:border-primary/20 transition-colors">
+                  <div key={ref.id} className="group flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5 p-4 bg-white border border-border/50 rounded-2xl hover:border-primary/30 transition-all hover:shadow-lg hover:-translate-y-0.5">
+                    <div className="w-full sm:w-40 aspect-video bg-secondary rounded-xl relative overflow-hidden border border-border/50 group-hover:border-primary/20 transition-colors">
                       <div className="absolute inset-0 flex items-center justify-center z-10">
                         <div className="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center shadow-lg backdrop-blur-sm group-hover:scale-110 transition-transform">
                           {ref.type === 'shorts' ? <Smartphone className="w-5 h-5 text-pink-500" /> : 

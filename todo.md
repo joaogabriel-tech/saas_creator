@@ -79,3 +79,23 @@
 - [x] Adicionar mensagens de erro quando créditos insuficientes
 - [x] Criar testes vitest para fluxo de créditos (7 testes passando)
 - [x] Documentar sistema de créditos
+
+## ✅ Responsividade Mobile (Concluído)
+- [x] Analisar Dashboard e identificar problemas mobile
+- [x] Ajustar grid de cards do Dashboard para mobile (1 col mobile, 2 tablet, 4 desktop)
+- [x] Ajustar tipografia e espaçamentos do Dashboard (responsivos)
+- [x] Ajustar header do Dashboard (botões empilham em mobile)
+- [x] Ajustar card Insight Diário para mobile (padding e texto)
+- [x] Ajustar action cards para mobile (1 col mobile, 2 tablet)
+- [x] Ajustar Roteiros Recentes para mobile (padding reduzido)
+- [x] Analisar página de Referências e identificar problemas mobile
+- [x] Ajustar tabs e formulários de Referências para mobile
+- [x] Ajustar cards de referências para mobile (layout vertical)
+- [x] Verificar DashboardLayout mobile (sidebar já tem suporte nativo)
+
+## 🔄 Próximas Melhorias de Responsividade
+- [ ] Ajustar Home page (não autenticada) para mobile
+- [ ] Ajustar páginas de Ideias, Roteiros e Planos
+- [ ] Testar em breakpoints reais: 375px, 768px, 1024px
+- [ ] Validar touch targets (mínimo 44x44px)
+- [ ] Otimizar imagens para mobile (lazy loading)
