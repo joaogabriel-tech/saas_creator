@@ -170,3 +170,14 @@
 - [x] Tentar extrair erro do campo output se error estiver vazio
 - [x] Adicionar mensagem genérica amigável para usuário
 - [ ] Testar com vídeo público curto (1-3 min)
+
+## ✅ Página de Visualização de Análise
+- [x] Criar página ReferenceDetail em /project/:id/reference/:refId
+- [x] Layout responsivo com header e botões de ação
+- [x] Embed de vídeo do YouTube (suporta youtube.com, youtu.be, shorts)
+- [x] Markdown rendering para análise com Streamdown
+- [x] Botões: Voltar, Abrir Vídeo, Gerar Roteiro
+- [x] Card de metadados (data, nicho, criador)
+- [x] Adicionar rota no App.tsx
+- [x] Adicionar botão "Ver Análise Completa" nos cards de referências
+- [x] Loading e error states

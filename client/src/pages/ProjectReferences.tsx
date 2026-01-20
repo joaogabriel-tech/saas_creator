@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRoute } from "wouter";
+import { useRoute, useLocation } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,6 +14,7 @@ import ProjectLayout from "@/components/ProjectLayout";
 
 export default function ProjectReferences() {
   const [, params] = useRoute("/project/:id/references");
+  const [, navigate] = useLocation();
   const projectId = params?.id;
 
   const [videoUrl, setVideoUrl] = useState("");
@@ -278,8 +279,17 @@ export default function ProjectReferences() {
                           {ref.analysis}
                         </p>
 
-                        <div className="text-xs text-muted-foreground">
-                          Adicionado em {new Date(ref.createdAt).toLocaleDateString("pt-BR")}
+                        <div className="flex items-center justify-between">
+                          <div className="text-xs text-muted-foreground">
+                            Adicionado em {new Date(ref.createdAt).toLocaleDateString("pt-BR")}
+                          </div>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => navigate(`/project/${projectId}/reference/${ref.id}`)}
+                          >
+                            Ver Análise Completa
+                          </Button>
                         </div>
                       </div>
                     </div>
