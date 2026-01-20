@@ -187,8 +187,6 @@ export const manusRouter = router({
       })
     )
     .mutation(async ({ input, ctx }) => {
-      // Validar créditos antes de executar
-      await requireCredits(ctx.user.id, CREDIT_COSTS.ANALYZE_REFERENCE);
       console.log(`[Manus] Iniciando análise de referência:`, { videoUrl: input.videoUrl, niche: input.niche, creatorName: input.creatorName });
       
       // Construir prompt contextualizado
@@ -232,15 +230,22 @@ Forneça uma análise detalhada e estruturada que possa ser usada para replicar 
       // Extrair análise
       const analysis = extractAssistantResponse(completedTask);
 
+      // Calcular custo: 2x os créditos gastos na Manus
+      const manusCredits = completedTask.credit_usage || 0;
+      const krioCredits = Math.ceil(manusCredits * 2); // Dobro dos créditos Manus
+      
+      console.log(`[Manus] Créditos Manus: ${manusCredits}, Créditos Krio: ${krioCredits}`);
+
       // Deduzir créditos após sucesso
-      const newBalance = await deductCredits(ctx.user.id, CREDIT_COSTS.ANALYZE_REFERENCE);
+      const newBalance = await deductCredits(ctx.user.id, krioCredits);
       console.log(`[Manus] Créditos deduzidos. Novo saldo: ${newBalance}`);
 
       return {
         success: true,
         taskId: createResponse.task_id,
         analysis,
-        creditUsage: CREDIT_COSTS.ANALYZE_REFERENCE,
+        manusCredits, // Créditos gastos na API Manus
+        krioCredits, // Créditos deduzidos na Krio (2x)
         newBalance,
       };
     }),

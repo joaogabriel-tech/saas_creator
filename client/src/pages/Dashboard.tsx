@@ -141,7 +141,7 @@ function StatsGrid() {
       highlight: true 
     },
     { 
-      title: "Créditos AURA", 
+      title: "Créditos Krio", 
       value: credits?.currentBalance.toString() || "0", 
       sub: `${credits?.totalUsed || 0} créditos usados`, 
       icon: Zap, 

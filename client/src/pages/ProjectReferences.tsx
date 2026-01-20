@@ -34,8 +34,8 @@ export default function ProjectReferences() {
 
   const analyzeReferenceMutation = trpc.manus.analyzeReference.useMutation({
     onSuccess: async (data) => {
-      toast.success(`Análise concluída! Novo saldo: ${data.newBalance} créditos`, {
-        description: "Referência salva com sucesso",
+      toast.success(`Análise concluída! Créditos Krio gastos: ${data.krioCredits}`, {
+        description: `Novo saldo: ${data.newBalance} créditos`,
       });
       
       // Save to database

@@ -80,7 +80,7 @@ export default function References() {
         )
       );
 
-      toast.success(`✅ Análise concluída! Créditos usados: ${result.creditUsage}. Novo saldo: ${result.newBalance}`);
+      toast.success(`✅ Análise concluída! Créditos Krio gastos: ${result.krioCredits}. Novo saldo: ${result.newBalance}`);
 
       // Limpar campos opcionais
       setNiche("");

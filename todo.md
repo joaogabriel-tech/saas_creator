@@ -181,3 +181,13 @@
 - [x] Adicionar rota no App.tsx
 - [x] Adicionar botão "Ver Análise Completa" nos cards de referências
 - [x] Loading e error states
+
+## ✅ Sistema de Consumo de Créditos Krio
+- [x] Renomear "Créditos AURA" para "Créditos Krio" no Dashboard
+- [x] Atualizar backend para calcular custo: credit_usage_manus * 2
+- [x] Integrar dedução de créditos no analyzeReference
+- [x] Retornar manusCredits, krioCredits e newBalance ao frontend
+- [x] Mostrar custo no toast de sucesso (ProjectReferences)
+- [x] Atualizar References.tsx para usar krioCredits
+- [x] Remover validação prévia (dedução só após sucesso)
+- [ ] Testar fluxo completo com vídeo real
