@@ -93,6 +93,10 @@ async function waitForTaskCompletion(
 ): Promise<ManusTaskStatus> {
   console.log(`[Manus] Iniciando polling para task ${taskId} (max ${maxAttempts} tentativas)`);
   
+  // Aguardar 3 segundos antes do primeiro polling para dar tempo da API registrar a tarefa
+  console.log(`[Manus] Aguardando 3s antes do primeiro polling...`);
+  await new Promise(resolve => setTimeout(resolve, 3000));
+  
   for (let attempt = 0; attempt < maxAttempts; attempt++) {
     const status = await callManusAPI<ManusTaskStatus>(`/tasks/${taskId}`, {
       method: "GET",
@@ -196,7 +200,9 @@ Forneça uma análise detalhada e estruturada que possa ser usada para replicar 
         }),
       });
 
-      console.log(`[Manus] Tarefa criada com sucesso! Task ID: ${createResponse.task_id}`);
+      console.log(`[Manus] Tarefa criada com sucesso!`);
+      console.log(`[Manus] Resposta completa:`, JSON.stringify(createResponse, null, 2));
+      console.log(`[Manus] Task ID extraído: ${createResponse.task_id}`);
 
       // Aguardar conclusão
       const completedTask = await waitForTaskCompletion(createResponse.task_id);

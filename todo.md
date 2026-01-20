@@ -153,3 +153,11 @@
 - [x] Botão de deletar referência com confirmação
 - [x] Link externo para abrir vídeo original
 - [x] Atualização automática de estatísticas do projeto
+
+## 🔧 Correção de Análise de Referências
+- [x] Adicionar delay de 3s antes do primeiro polling
+- [x] Adicionar logs detalhados da resposta de criação de tarefa
+- [x] Reiniciar servidor com correções
+- [ ] Testar fluxo completo com vídeo real
+- [ ] Validar salvamento no banco de dados
+- [ ] Verificar exibição de referências salvas
