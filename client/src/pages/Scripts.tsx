@@ -6,7 +6,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
 import { Zap, Copy, Download, Share2, RefreshCw, Edit3, MonitorPlay, X, Play, Pause, Settings2, Sparkles } from "lucide-react";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 export default function Scripts() {
   const [topic, setTopic] = useState("");
@@ -186,6 +187,9 @@ Comenta aqui embaixo: qual é o seu maior gargalo financeiro hoje?
                       </Button>
                     </DialogTrigger>
                     <DialogContent className="max-w-[100vw] h-[100vh] p-0 border-0 bg-black z-50 flex flex-col">
+                      <VisuallyHidden>
+                        <DialogTitle>Teleprompter</DialogTitle>
+                      </VisuallyHidden>
                       {/* Teleprompter UI */}
                       <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-center bg-gradient-to-b from-black to-transparent z-50">
                         <div className="flex items-center gap-4 bg-white/10 backdrop-blur-md p-2 rounded-full border border-white/10">

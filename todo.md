@@ -99,3 +99,6 @@
 - [ ] Testar em breakpoints reais: 375px, 768px, 1024px
 - [ ] Validar touch targets (mínimo 44x44px)
 - [ ] Otimizar imagens para mobile (lazy loading)
+
+## ✅ Correções de Bugs
+- [x] Corrigir erro de acessibilidade: DialogContent sem DialogTitle
