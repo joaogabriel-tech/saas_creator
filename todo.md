@@ -119,3 +119,10 @@
 - [ ] Atualizar Dashboard para mostrar métricas do projeto ativo
 - [ ] Implementar edição de projetos
 - [ ] Criar testes vitest para fluxo de projetos
+
+## ✅ Navegação e Visualização de Projetos
+- [x] Adicionar item "Projetos" no menu de navegação do sidebar
+- [x] Criar card "Total de Projetos" no Dashboard
+- [x] Fazer card clicável para navegar até /projects
+- [x] Card mostra contagem real de projetos do usuário
+- [x] Card de Créditos AURA mostra saldo real

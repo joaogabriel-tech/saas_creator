@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowUpRight, Play, FileText, Activity, Zap, Sparkles } from "lucide-react";
+import { ArrowUpRight, Play, FileText, Activity, Zap, Sparkles, Folder } from "lucide-react";
 import { Link } from "wouter";
+import { trpc } from "@/lib/trpc";
 
 export default function Dashboard() {
   return (
@@ -31,27 +32,7 @@ export default function Dashboard() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-        {[
-          { title: "Total de Projetos", value: "12", sub: "+2 essa semana", icon: FileText },
-          { title: "Referências Analisadas", value: "48", sub: "15h processadas", icon: Play },
-          { title: "Score de Consistência", value: "94%", sub: "Alta fidelidade", icon: Activity, highlight: true },
-          { title: "Créditos AURA", value: "850", sub: "Renova em 12 dias", icon: Zap, gold: true },
-        ].map((stat, i) => (
-          <Card key={i} className="soft-card border-0 bg-white relative overflow-hidden group">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-bold text-muted-foreground font-sans uppercase tracking-wider">{stat.title}</CardTitle>
-              <div className={`p-2 rounded-lg ${stat.gold ? 'bg-amber-100 text-amber-600' : stat.highlight ? 'bg-emerald-100 text-emerald-600' : 'bg-secondary text-foreground'}`}>
-                <stat.icon className="h-4 w-4" />
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className={`text-4xl font-display font-bold mt-2 ${stat.highlight ? 'text-emerald-600' : stat.gold ? 'text-amber-600' : 'text-foreground'}`}>{stat.value}</div>
-              <p className="text-sm mt-2 text-muted-foreground font-medium">{stat.sub}</p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+      <StatsGrid />
 
       {/* Main Content Area */}
       <div className="grid gap-6 lg:gap-8 lg:grid-cols-7">
@@ -129,6 +110,87 @@ export default function Dashboard() {
           </Card>
         </div>
       </div>
+    </div>
+  );
+}
+
+function StatsGrid() {
+  const { data: projects = [] } = trpc.projects.list.useQuery();
+  const { data: credits } = trpc.credits.getBalance.useQuery();
+
+  const stats = [
+    { 
+      title: "Total de Projetos", 
+      value: projects.length.toString(), 
+      sub: projects.length === 0 ? "Crie seu primeiro projeto" : `${projects.length} ${projects.length === 1 ? 'projeto ativo' : 'projetos ativos'}`, 
+      icon: Folder,
+      href: "/projects"
+    },
+    { 
+      title: "Referências Analisadas", 
+      value: "0", 
+      sub: "Nenhuma referência ainda", 
+      icon: Play,
+      href: "/references"
+    },
+    { 
+      title: "Score de Consistência", 
+      value: "--", 
+      sub: "Adicione referências", 
+      icon: Activity, 
+      highlight: true 
+    },
+    { 
+      title: "Créditos AURA", 
+      value: credits?.currentBalance.toString() || "0", 
+      sub: `${credits?.totalUsed || 0} créditos usados`, 
+      icon: Zap, 
+      gold: true 
+    },
+  ];
+
+  return (
+    <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+      {stats.map((stat, i) => {
+        const cardContent = (
+          <Card className={`soft-card border-0 bg-white relative overflow-hidden group ${
+            stat.href ? 'cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-all' : ''
+          }`}>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-bold text-muted-foreground font-sans uppercase tracking-wider">
+                {stat.title}
+              </CardTitle>
+              <div className={`p-2 rounded-lg ${
+                stat.gold ? 'bg-amber-100 text-amber-600' : 
+                stat.highlight ? 'bg-emerald-100 text-emerald-600' : 
+                'bg-secondary text-foreground'
+              }`}>
+                <stat.icon className="h-4 w-4" />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className={`text-4xl font-display font-bold mt-2 ${
+                stat.highlight ? 'text-emerald-600' : 
+                stat.gold ? 'text-amber-600' : 
+                'text-foreground'
+              }`}>
+                {stat.value}
+              </div>
+              <p className="text-sm mt-2 text-muted-foreground font-medium">{stat.sub}</p>
+            </CardContent>
+          </Card>
+        );
+
+        if (stat.href) {
+          return (
+            <Link key={i} href={stat.href} className="block">
+              {cardContent}
+            </Link>
+          );
+        }
+
+        return <div key={i}>{cardContent}</div>;
+      })}
     </div>
   );
 }
