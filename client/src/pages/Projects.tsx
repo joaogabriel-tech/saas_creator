@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { NewProjectDialog } from "@/components/NewProjectDialog";
 import { useProject } from "@/contexts/ProjectContext";
-import { Loader2, Plus, Folder, FileText, Lightbulb, FileCode, Trash2 } from "lucide-react";
+import { Loader2, Plus, Folder, FileText, Lightbulb, FileCode, Trash2, ArrowLeft } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
 import {
@@ -62,6 +62,14 @@ export default function Projects() {
 
   return (
     <div className="container mx-auto p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8">
+      {/* Back Button */}
+      <Link href="/dashboard">
+        <Button variant="ghost" className="-ml-2 hover:bg-secondary/50">
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Voltar
+        </Button>
+      </Link>
+
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>

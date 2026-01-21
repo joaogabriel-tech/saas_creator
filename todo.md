@@ -507,3 +507,10 @@
 - [x] Usar Link do wouter para navegação
 - [x] Adicionar imports necessários (Link, ArrowLeft)
 - [x] Testar navegação em todas as páginas (servidor rodando sem erros TypeScript)
+
+## ✅ Botão Voltar na Página Projetos
+- [x] Adicionar botão "Voltar" em Projects.tsx → /dashboard
+- [x] Usar mesmo padrão (ArrowLeft + texto "Voltar")
+- [x] Estilo: variant="ghost" com hover:bg-secondary/50
+- [x] Posição: topo esquerdo, antes do título
+- [x] Adicionar imports (Link, ArrowLeft)
