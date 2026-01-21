@@ -10,6 +10,7 @@ import { Loader2, Video, Trash2, ExternalLink } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
 import ProjectLayout from "@/components/ProjectLayout";
+import { InsufficientCreditsDialog } from "@/components/InsufficientCreditsDialog";
 
 
 export default function ProjectReferences() {
@@ -20,6 +21,7 @@ export default function ProjectReferences() {
   const [videoUrl, setVideoUrl] = useState("");
   const [creatorName, setCreatorName] = useState("");
   const [niche, setNiche] = useState("");
+  const [showInsufficientCreditsDialog, setShowInsufficientCreditsDialog] = useState(false);
 
   if (!projectId) {
     return <div>Projeto não encontrado</div>;
@@ -29,6 +31,7 @@ export default function ProjectReferences() {
   const { data: references, refetch: refetchReferences } = trpc.references.list.useQuery({
     projectId: parseInt(projectId),
   });
+  const { data: creditBalance } = trpc.credits.getBalance.useQuery();
 
   const utils = trpc.useUtils();
 
@@ -86,6 +89,13 @@ export default function ProjectReferences() {
   const handleAnalyze = async () => {
     if (!videoUrl.trim()) {
       toast.error("Por favor, insira uma URL de vídeo");
+      return;
+    }
+
+    // Validação de créditos antes de iniciar análise
+    const ESTIMATED_COST = 150; // Custo estimado para análise de vídeo
+    if (creditBalance && creditBalance.currentBalance < ESTIMATED_COST) {
+      setShowInsufficientCreditsDialog(true);
       return;
     }
 
@@ -171,7 +181,7 @@ export default function ProjectReferences() {
 
                 <Button
                   onClick={handleAnalyze}
-                  disabled={analyzeReferenceMutation.isPending || !videoUrl.trim()}
+                  disabled={analyzeReferenceMutation.isPending || !videoUrl.trim() || (creditBalance && creditBalance.currentBalance < 150)}
                   className="w-full sm:w-auto"
                 >
                   {analyzeReferenceMutation.isPending ? (
@@ -183,6 +193,11 @@ export default function ProjectReferences() {
                     "Analisar"
                   )}
                 </Button>
+                {creditBalance && creditBalance.currentBalance < 150 && (
+                  <p className="text-sm text-destructive mt-2">
+                    Créditos insuficientes. Você precisa de pelo menos 150 créditos para analisar um vídeo.
+                  </p>
+                )}
               </TabsContent>
 
               <TabsContent value="shorts" className="space-y-4">
@@ -199,7 +214,7 @@ export default function ProjectReferences() {
 
                 <Button
                   onClick={handleAnalyze}
-                  disabled={analyzeReferenceMutation.isPending || !videoUrl.trim()}
+                  disabled={analyzeReferenceMutation.isPending || !videoUrl.trim() || (creditBalance && creditBalance.currentBalance < 150)}
                   className="w-full sm:w-auto"
                 >
                   {analyzeReferenceMutation.isPending ? (
@@ -211,6 +226,11 @@ export default function ProjectReferences() {
                     "Analisar"
                   )}
                 </Button>
+                {creditBalance && creditBalance.currentBalance < 150 && (
+                  <p className="text-sm text-destructive mt-2">
+                    Créditos insuficientes. Você precisa de pelo menos 150 créditos para analisar um vídeo.
+                  </p>
+                )}
               </TabsContent>
             </Tabs>
           </CardContent>
@@ -300,6 +320,15 @@ export default function ProjectReferences() {
           )}
         </div>
       </div>
+
+      {/* Insufficient Credits Dialog */}
+      <InsufficientCreditsDialog
+        open={showInsufficientCreditsDialog}
+        onOpenChange={setShowInsufficientCreditsDialog}
+        currentBalance={creditBalance?.currentBalance ?? 0}
+        estimatedCost={150}
+        operationName="a análise de vídeo"
+      />
     </ProjectLayout>
   );
 }

@@ -191,3 +191,16 @@
 - [x] Atualizar References.tsx para usar krioCredits
 - [x] Remover validação prévia (dedução só após sucesso)
 - [ ] Testar fluxo completo com vídeo real
+
+## ✅ Validação de Créditos no Frontend
+- [x] Consultar saldo de créditos antes de iniciar análise
+- [x] Estimar custo da operação (análise = 150 créditos)
+- [x] Criar componente InsufficientCreditsDialog
+- [x] Mostrar modal de aviso quando créditos insuficientes
+- [x] Desabilitar botão "Analisar" quando sem créditos
+- [x] Adicionar link para página de Planos no modal
+- [x] Implementar em ProjectReferences.tsx
+- [x] Mensagem de aviso abaixo do botão quando créditos insuficientes
+- [x] Atualizar CREDITS_SYSTEM.md com documentação
+- [ ] Testar cenário com saldo suficiente (requer teste manual)
+- [ ] Testar cenário com saldo insuficiente (requer teste manual)

@@ -197,7 +197,68 @@ const analyzeReferenceMutation = trpc.manus.analyzeReference.useMutation({
 
 ---
 
-### 3. Tratamento de Erros
+### 3. Validação Prévia de Créditos (Frontend)
+
+Componente `InsufficientCreditsDialog` para validar créditos ANTES de iniciar operações:
+
+```tsx
+import { InsufficientCreditsDialog } from "@/components/InsufficientCreditsDialog";
+
+function ProjectReferences() {
+  const [showInsufficientCreditsDialog, setShowInsufficientCreditsDialog] = useState(false);
+  const { data: creditBalance } = trpc.credits.getBalance.useQuery();
+  
+  const handleAnalyze = async () => {
+    const ESTIMATED_COST = 150; // Custo estimado
+    
+    // Validação ANTES de chamar API
+    if (creditBalance && creditBalance.currentBalance < ESTIMATED_COST) {
+      setShowInsufficientCreditsDialog(true);
+      return;
+    }
+    
+    // Prosseguir com análise
+    await analyzeReferenceMutation.mutateAsync({ videoUrl });
+  };
+  
+  return (
+    <>
+      <Button 
+        onClick={handleAnalyze}
+        disabled={creditBalance && creditBalance.currentBalance < 150}
+      >
+        Analisar
+      </Button>
+      
+      {/* Mensagem de aviso */}
+      {creditBalance && creditBalance.currentBalance < 150 && (
+        <p className="text-sm text-destructive mt-2">
+          Créditos insuficientes. Você precisa de pelo menos 150 créditos.
+        </p>
+      )}
+      
+      {/* Modal de aviso */}
+      <InsufficientCreditsDialog
+        open={showInsufficientCreditsDialog}
+        onOpenChange={setShowInsufficientCreditsDialog}
+        currentBalance={creditBalance?.currentBalance ?? 0}
+        estimatedCost={150}
+        operationName="a análise de vídeo"
+      />
+    </>
+  );
+}
+```
+
+**Benefícios:**
+- ⚡ Feedback instantâneo (sem esperar API)
+- 🚫 Botão desabilitado quando sem créditos
+- 💬 Modal explicativo com link para Planos
+- 📊 Exibe déficit exato de créditos
+
+---
+
+### 4. Tratamento de Erros
 
 Mensagens contextuais para créditos insuficientes:
 
@@ -368,6 +429,7 @@ await db.insert(transactions).values({
    - Tabela `credit_transactions`
    - Campos: `id`, `userId`, `amount`, `type`, `description`, `createdAt`
    - Endpoint `credits.getHistory`
+   - Página dedicada mostrando todas as operações (análises, roteiros, recargas)
 
 2. **Pacotes de Créditos**
    - Tabela `credit_packages`
@@ -441,6 +503,12 @@ await db.insert(transactions).values({
 
 ---
 
-**Última atualização:** 14 Jan 2026  
-**Versão do sistema:** 1.0.0  
+**Última atualização:** 21 Jan 2026  
+**Versão do sistema:** 1.1.0  
 **Status:** ✅ Produção
+
+**Novidades v1.1.0:**
+- ✅ Validação de créditos no frontend antes de operações
+- ✅ Componente InsufficientCreditsDialog com modal explicativo
+- ✅ Botão desabilitado automaticamente quando créditos insuficientes
+- ✅ Mensagem de aviso abaixo do botão com custo estimado
