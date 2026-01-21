@@ -1,15 +1,11 @@
 import { Link, useLocation } from "wouter";
 import { 
   LayoutDashboard, 
-  Video, 
-  FileText, 
   Settings, 
   LogOut, 
   Plus,
-  Sparkles,
   Menu,
   CreditCard,
-  Lightbulb,
   Folder
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -25,9 +21,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const navItems = [
     { icon: LayoutDashboard, label: "Dashboard", href: "/" },
     { icon: Folder, label: "Projetos", href: "/projects" },
-    { icon: Video, label: "Referências", href: "/references" },
-    { icon: Lightbulb, label: "Ideias", href: "/ideas" },
-    { icon: FileText, label: "Roteiros", href: "/scripts" },
     { icon: CreditCard, label: "Planos", href: "/pricing" },
     { icon: Settings, label: "Configurações", href: "/settings" },
   ];

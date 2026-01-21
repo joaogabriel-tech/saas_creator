@@ -17,15 +17,10 @@ export default function Dashboard() {
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3">
-          <Link href="/references" className="flex-1 sm:flex-initial">
-            <Button variant="outline" className="w-full sm:w-auto rounded-xl px-6 h-12 border-border bg-white hover:bg-secondary text-foreground font-medium shadow-sm hover:shadow-md transition-all">
-              Adicionar Referência
-            </Button>
-          </Link>
-          <Link href="/scripts" className="flex-1 sm:flex-initial">
+          <Link href="/projects" className="flex-1 sm:flex-initial">
             <Button className="w-full sm:w-auto rounded-xl bg-primary text-white hover:bg-primary/90 h-12 px-8 font-bold shadow-lg shadow-primary/25 transition-all hover:-translate-y-0.5 hover:shadow-primary/40">
-              <Sparkles className="w-4 h-4 mr-2" />
-              Gerar Roteiro
+              <Folder className="w-4 h-4 mr-2" />
+              Ver Projetos
             </Button>
           </Link>
         </div>

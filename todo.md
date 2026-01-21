@@ -255,3 +255,15 @@
 - [ ] Testar salvamento e listagem
 - [ ] Testar deletar roteiro
 - [ ] Validar atualização de estatísticas do projeto
+
+## ✅ Remover Páginas Universais
+- [x] Remover arquivo `/client/src/pages/References.tsx`
+- [x] Remover arquivo `/client/src/pages/Ideas.tsx`
+- [x] Remover arquivo `/client/src/pages/Scripts.tsx`
+- [x] Remover rotas `/references`, `/ideas`, `/scripts` do App.tsx
+- [x] Remover imports de References, Scripts, Ideas do App.tsx
+- [x] Atualizar Layout.tsx removendo links para páginas universais (Video, Lightbulb, FileText)
+- [x] Remover imports não utilizados do Layout.tsx
+- [x] Atualizar Dashboard.tsx removendo CTAs "Adicionar Referência" e "Gerar Roteiro"
+- [x] Substituir por botão "Ver Projetos" no Dashboard
+- [x] Testar navegação após remoção (sidebar limpo, dashboard com botão Ver Projetos)

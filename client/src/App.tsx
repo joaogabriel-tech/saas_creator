@@ -7,9 +7,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { ProjectProvider } from "./contexts/ProjectContext";
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
-import References from "./pages/References";
-import Scripts from "@/pages/Scripts";
-import Ideas from "@/pages/Ideas";
+
 import Pricing from "./pages/Pricing";
 import Projects from "./pages/Projects";
 import ProjectDashboard from "./pages/ProjectDashboard";
@@ -32,9 +30,7 @@ function Router() {
       {/* Main Routes (with Layout) */}
       <Layout>
         <Route path="/" component={Dashboard} />
-        <Route path="/references" component={References} />
-        <Route path="/scripts" component={Scripts} />
-        <Route path="/ideas" component={Ideas} />
+
         <Route path="/projects" component={Projects} />
         <Route path="/pricing" component={Pricing} />
         <Route path="/settings" component={() => <div className="p-8 text-center text-muted-foreground font-mono">Configurações (Em Breve)</div>} />
