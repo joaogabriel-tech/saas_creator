@@ -165,6 +165,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-background/80 backdrop-blur-md border-b border-border/40 z-50 flex items-center justify-between px-4">
         <div className="flex items-center gap-3">
           <span className="font-display font-bold text-xl">KRIO</span>
+        </div>
+        <div className="flex items-center gap-3">
           {/* Credits Badge */}
           {loadingCredits ? (
             <div className="h-6 w-16 bg-muted rounded-full animate-pulse" />
@@ -176,8 +178,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <span className="text-xs font-bold text-primary">{creditBalance?.currentBalance || 0}</span>
             </div>
           )}
-        </div>
-        <Sheet>
+          <Sheet>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon">
               <Menu className="w-6 h-6" />
@@ -186,7 +187,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <SheetContent side="left" className="p-0 w-80 border-r border-border/40">
             <SidebarContent />
           </SheetContent>
-        </Sheet>
+          </Sheet>
+        </div>
       </div>
 
       {/* Main Content */}
