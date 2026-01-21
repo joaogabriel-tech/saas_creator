@@ -15,11 +15,32 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { NewProjectDialog } from "@/components/NewProjectDialog";
 import { useState } from "react";
 import { trpc } from "@/lib/trpc";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const [isNewProjectDialogOpen, setIsNewProjectDialogOpen] = useState(false);
+  const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
   const { data: recentProjects, isLoading: loadingProjects } = trpc.projects.getRecent.useQuery();
+  const logoutMutation = trpc.auth.logout.useMutation({
+    onSuccess: () => {
+      setLocation("/login");
+    },
+  });
+
+  const handleLogout = () => {
+    logoutMutation.mutate();
+    setIsLogoutDialogOpen(false);
+  };
 
   const navItems = [
     { icon: LayoutDashboard, label: "Dashboard", href: "/" },
@@ -128,9 +149,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <p className="text-xs text-muted-foreground">50/100 créditos usados</p>
         </div>
 
-        <button className="flex items-center gap-3 px-4 py-3 text-muted-foreground hover:text-destructive transition-colors w-full rounded-xl hover:bg-destructive/5">
+        <button 
+          onClick={() => setIsLogoutDialogOpen(true)}
+          disabled={logoutMutation.isPending}
+          className="flex items-center gap-3 px-4 py-3 text-muted-foreground hover:text-destructive transition-colors w-full rounded-xl hover:bg-destructive/5 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
           <LogOut className="w-5 h-5" />
-          <span className="font-medium">Sair</span>
+          <span className="font-medium">
+            {logoutMutation.isPending ? "Saindo..." : "Sair"}
+          </span>
         </button>
       </div>
     </div>
@@ -186,6 +213,28 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         open={isNewProjectDialogOpen} 
         onOpenChange={setIsNewProjectDialogOpen} 
       />
+
+      {/* Logout Confirmation Dialog */}
+      <AlertDialog open={isLogoutDialogOpen} onOpenChange={setIsLogoutDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Confirmar Logout</AlertDialogTitle>
+            <AlertDialogDescription>
+              Tem certeza que deseja sair? Você precisará fazer login novamente para acessar sua conta.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction 
+              onClick={handleLogout}
+              disabled={logoutMutation.isPending}
+              className="bg-destructive hover:bg-destructive/90"
+            >
+              {logoutMutation.isPending ? "Saindo..." : "Sair"}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

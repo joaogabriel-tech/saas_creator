@@ -280,3 +280,44 @@
 - [x] Loading skeleton enquanto carrega (3 linhas animadas)
 - [x] Condicional: só mostra se houver projetos
 - [x] Funciona no sidebar desktop e mobile sheet (mesmo SidebarContent)
+
+## ✅ Melhorias de UX de Autenticação
+### Página de Login
+- [x] Criar página `/login` com design luxuoso KRYO
+- [x] Botão "Entrar com Manus OAuth" estilizado
+- [x] Background com gradientes e elementos visuais (bolhas animadas)
+- [x] Animações suaves de entrada (fade-in-up)
+- [x] Mensagem de boas-vindas personalizada
+- [x] Logo KRYO com efeito de brilho (drop-shadow)
+- [x] Badge com Sparkles icon
+- [x] Lista de features com bolinhas coloridas
+- [x] Footer com links de Termos e Privacidade
+- [x] Redirect automático se já logado
+
+### Loading States
+- [x] Criar componente `ProtectedRoute` com loading elegante
+- [x] Spinner com logo KRYO animado (pulse + spin)
+- [x] Evitar "flash" de conteúdo não autenticado
+- [x] Transições suaves entre estados
+- [x] Mensagem "Verificando autenticação..."
+
+### Proteção de Rotas
+- [x] Criar componente `ProtectedRoute` wrapper
+- [x] Verificar autenticação antes de renderizar via useAuth()
+- [x] Redirect para `/login` se não autenticado
+- [x] Loading state durante verificação (logo + spinner)
+- [x] Não renderizar children se não autenticado
+
+### Logout Funcional
+- [x] Integrar botão "Sair" com `trpc.auth.logout.useMutation()`
+- [x] AlertDialog de confirmação antes de sair
+- [x] Redirect para `/login` após logout
+- [x] Loading state no botão ("Saindo...")
+- [x] Botão desabilitado durante logout
+- [x] Estilo destrutivo no botão de confirmação
+
+### Rotas Protegidas
+- [x] Envolver todas rotas principais com ProtectedRoute
+- [x] Envolver rotas de projeto com ProtectedRoute
+- [x] Rota `/login` pública (sem proteção)
+- [x] Atualizar App.tsx com nova estrutura
