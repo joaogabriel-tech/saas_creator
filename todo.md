@@ -410,3 +410,21 @@
 - [x] Atualizar import de Settings
 - [x] Substituir placeholder por componente Settings
 - [x] ProtectedRoute já aplicado
+
+## ✅ Redesign da Página de Login
+- [x] Analisar identidade visual KRYO (cores, tipografia, espaçamentos)
+- [x] Aplicar paleta de cores KRYO (primary, indigo, gradientes)
+- [x] Usar logo KRYO com efeito de brilho (drop-shadow roxo)
+- [x] Background com gradiente (from-background via-background to-primary/5)
+- [x] Três bolhas animadas com gradientes e blur-3xl
+- [x] Tipografia consistente (font-display para títulos)
+- [x] Botão com gradiente (from-primary to-indigo-600) e hover effects
+- [x] Animações suaves (fade-in, fade-in-up, pulse, scale, translate)
+- [x] Layout two-column (desktop) com branding à esquerda
+- [x] Responsivo (mobile single column, desktop grid)
+- [x] Cards de features com ícones coloridos (Video, Lightbulb, FileText)
+- [x] Badge "Powered by AI" com Sparkles animado
+- [x] Divider "O QUE VOCÊ VAI TER" entre botão e features
+- [x] Loading state com logo pulsante e spinner
+- [x] Hover effects nos cards (translate-y, border-primary)
+- [x] Arrow icon com animação translate-x no hover
