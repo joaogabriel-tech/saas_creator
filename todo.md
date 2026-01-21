@@ -267,3 +267,16 @@
 - [x] Atualizar Dashboard.tsx removendo CTAs "Adicionar Referência" e "Gerar Roteiro"
 - [x] Substituir por botão "Ver Projetos" no Dashboard
 - [x] Testar navegação após remoção (sidebar limpo, dashboard com botão Ver Projetos)
+
+## ✅ Projetos Recentes no Sidebar
+- [x] Criar query `getRecent` no projectsRouter retornando últimos 5 projetos
+- [x] Ordenar por `updatedAt DESC` com `.limit(5)`
+- [x] Atualizar Layout.tsx para buscar projetos via tRPC
+- [x] Adicionar lista de projetos abaixo da aba "Projetos"
+- [x] Exibir bolinha colorida + nome do projeto (truncado se longo)
+- [x] Link direto para `/project/:id/dashboard`
+- [x] Indicador visual de projeto ativo (bolinha primary + fundo primary/5)
+- [x] Ícone ChevronRight aparece no hover e quando ativo
+- [x] Loading skeleton enquanto carrega (3 linhas animadas)
+- [x] Condicional: só mostra se houver projetos
+- [x] Funciona no sidebar desktop e mobile sheet (mesmo SidebarContent)

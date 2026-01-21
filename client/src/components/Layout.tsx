@@ -6,17 +6,20 @@ import {
   Plus,
   Menu,
   CreditCard,
-  Folder
+  Folder,
+  ChevronRight
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { NewProjectDialog } from "@/components/NewProjectDialog";
 import { useState } from "react";
+import { trpc } from "@/lib/trpc";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [isNewProjectDialogOpen, setIsNewProjectDialogOpen] = useState(false);
+  const { data: recentProjects, isLoading: loadingProjects } = trpc.projects.getRecent.useQuery();
 
   const navItems = [
     { icon: LayoutDashboard, label: "Dashboard", href: "/" },
@@ -47,19 +50,67 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {navItems.map((item) => {
             const isActive = location === item.href;
             return (
-              <Link key={item.href} href={item.href}>
-                <div
-                  className={cn(
-                    "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 cursor-pointer group",
-                    isActive 
-                      ? "bg-primary/10 text-primary font-semibold" 
-                      : "text-muted-foreground hover:text-foreground hover:bg-secondary"
-                  )}
-                >
-                  <item.icon className={cn("w-5 h-5 transition-colors", isActive ? "text-primary" : "text-muted-foreground group-hover:text-foreground")} />
-                  <span>{item.label}</span>
-                </div>
-              </Link>
+              <div key={item.href}>
+                <Link href={item.href}>
+                  <div
+                    className={cn(
+                      "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 cursor-pointer group",
+                      isActive 
+                        ? "bg-primary/10 text-primary font-semibold" 
+                        : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                    )}
+                  >
+                    <item.icon className={cn("w-5 h-5 transition-colors", isActive ? "text-primary" : "text-muted-foreground group-hover:text-foreground")} />
+                    <span>{item.label}</span>
+                  </div>
+                </Link>
+                
+                {/* Recent Projects List (shown below "Projetos" item) */}
+                {item.href === "/projects" && recentProjects && recentProjects.length > 0 && (
+                  <div className="mt-2 ml-4 space-y-1">
+                    {recentProjects.map((project) => {
+                      const projectPath = `/project/${project.id}/dashboard`;
+                      const isProjectActive = location.startsWith(`/project/${project.id}`);
+                      return (
+                        <Link key={project.id} href={projectPath}>
+                          <div
+                            className={cn(
+                              "flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 cursor-pointer group text-sm",
+                              isProjectActive
+                                ? "bg-primary/5 text-primary font-medium"
+                                : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                            )}
+                          >
+                            <div 
+                              className={cn(
+                                "w-2 h-2 rounded-full flex-shrink-0",
+                                isProjectActive ? "bg-primary" : "bg-muted-foreground/30"
+                              )}
+                            />
+                            <span className="flex-1 truncate">{project.name}</span>
+                            <ChevronRight className={cn(
+                              "w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0",
+                              isProjectActive && "opacity-100"
+                            )} />
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+                
+                {/* Loading skeleton for projects */}
+                {item.href === "/projects" && loadingProjects && (
+                  <div className="mt-2 ml-4 space-y-1">
+                    {[1, 2, 3].map((i) => (
+                      <div key={i} className="flex items-center gap-2 px-3 py-2">
+                        <div className="w-2 h-2 rounded-full bg-muted-foreground/20 animate-pulse" />
+                        <div className="h-3 bg-muted-foreground/10 rounded flex-1 animate-pulse" />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             );
           })}
         </nav>

@@ -21,6 +21,21 @@ export const projectsRouter = router({
   }),
 
   /**
+   * Get recent projects (last 5 updated)
+   */
+  getRecent: protectedProcedure.query(async ({ ctx }) => {
+    const db = await getDb();
+    const recentProjects = await db!
+      .select()
+      .from(projects)
+      .where(eq(projects.userId, ctx.user.id))
+      .orderBy(desc(projects.updatedAt))
+      .limit(5);
+
+    return recentProjects;
+  }),
+
+  /**
    * Get a single project by ID
    */
   getById: protectedProcedure
