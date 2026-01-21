@@ -536,3 +536,6 @@
 
 ## ✅ Correções de Bugs
 - [x] Corrigir botão "Voltar" na página Meus Projetos (erro 404 - rota /dashboard não existia, corrigido para /)
+
+## ✅ Melhorias de UX/UI
+- [x] Mover exibição de créditos KRIO do sidebar para header (badge no topo esquerdo desktop e mobile)

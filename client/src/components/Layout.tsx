@@ -140,43 +140,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </div>
 
       <div className="mt-auto pt-8 border-t border-border/50">
-        <div className="bg-secondary/50 rounded-2xl p-5 mb-6 border border-border/50">
-          {loadingPlan || loadingCredits ? (
-            <div className="space-y-3 animate-pulse">
-              <div className="h-4 bg-muted rounded w-2/3" />
-              <div className="h-2 bg-muted rounded" />
-              <div className="h-3 bg-muted rounded w-1/2" />
-            </div>
-          ) : (
-            <>
-              <div className="flex justify-between items-center mb-3">
-                <span className="text-xs font-bold text-primary uppercase tracking-wider">
-                  Plano {userPlan?.planName || "Free"}
-                </span>
-                <span className={cn(
-                  "text-[10px] px-2 py-0.5 rounded-full border font-medium",
-                  userPlan?.status === "active" 
-                    ? "bg-green-50 text-green-700 border-green-200" 
-                    : "bg-red-50 text-red-700 border-red-200"
-                )}>
-                  {userPlan?.status === "active" ? "Ativo" : "Expirado"}
-                </span>
-              </div>
-              <div className="w-full bg-white h-2 rounded-full overflow-hidden mb-2 border border-border/50">
-                <div 
-                  className="bg-primary h-full rounded-full transition-all duration-500" 
-                  style={{ 
-                    width: `${Math.min(100, ((creditBalance?.totalUsed || 0) / (userPlan?.monthlyCredits || 1000)) * 100)}%` 
-                  }}
-                />
-              </div>
-              <p className="text-xs text-muted-foreground">
-                {creditBalance?.totalUsed || 0}/{userPlan?.monthlyCredits || 1000} créditos usados
-              </p>
-            </>
-          )}
-        </div>
-
         <button 
           onClick={() => setIsLogoutDialogOpen(true)}
           disabled={logoutMutation.isPending}
@@ -200,8 +163,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       {/* Mobile Header */}
       <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-background/80 backdrop-blur-md border-b border-border/40 z-50 flex items-center justify-between px-4">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <span className="font-display font-bold text-xl">KRIO</span>
+          {/* Credits Badge */}
+          {loadingCredits ? (
+            <div className="h-6 w-16 bg-muted rounded-full animate-pulse" />
+          ) : (
+            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
+              <svg className="w-3.5 h-3.5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd" />
+              </svg>
+              <span className="text-xs font-bold text-primary">{creditBalance?.currentBalance || 0}</span>
+            </div>
+          )}
         </div>
         <Sheet>
           <SheetTrigger asChild>
@@ -218,7 +193,24 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       {/* Main Content */}
       <main className="flex-1 lg:ml-80 min-h-screen p-6 lg:p-12 pt-24 lg:pt-12 transition-all duration-500">
         <div className="max-w-7xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <header className="flex justify-end items-center mb-12 gap-4">
+          <header className="flex justify-between items-center mb-12 gap-4">
+            {/* Credits Badge - Desktop */}
+            <div className="hidden lg:flex items-center">
+              {loadingCredits ? (
+                <div className="h-8 w-20 bg-muted rounded-full animate-pulse" />
+              ) : (
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
+                  <svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd" />
+                  </svg>
+                  <div className="flex flex-col">
+                    <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium">Créditos KRIO</span>
+                    <span className="text-sm font-bold text-primary">{creditBalance?.currentBalance || 0}</span>
+                  </div>
+                </div>
+              )}
+            </div>
             <div className="flex items-center gap-3 pl-4 border-l border-border/50">
               {loadingPlan ? (
                 <div className="flex items-center gap-3">
