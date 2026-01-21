@@ -15,6 +15,8 @@ import Projects from "./pages/Projects";
 import ProjectDashboard from "./pages/ProjectDashboard";
 import ProjectReferences from "./pages/ProjectReferences";
 import ReferenceDetail from "./pages/ReferenceDetail";
+import ProjectScripts from "./pages/ProjectScripts";
+import ScriptDetail from "./pages/ScriptDetail";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -24,7 +26,8 @@ function Router() {
       <Route path="/project/:id/references" component={ProjectReferences} />
       <Route path="/project/:id/reference/:refId" component={ReferenceDetail} />
       <Route path="/project/:id/ideas" component={() => <div className="p-8 text-center">Ideias do Projeto (Em Breve)</div>} />
-      <Route path="/project/:id/scripts" component={() => <div className="p-8 text-center">Roteiros do Projeto (Em Breve)</div>} />
+      <Route path="/project/:id/scripts" component={ProjectScripts} />
+      <Route path="/project/:id/script/:scriptId" component={ScriptDetail} />
       
       {/* Main Routes (with Layout) */}
       <Layout>

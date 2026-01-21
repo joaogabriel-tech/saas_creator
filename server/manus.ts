@@ -307,14 +307,22 @@ Formate o roteiro de forma clara e pronta para gravação.
       // Extrair roteiro
       const script = extractAssistantResponse(completedTask);
 
+      // Calcular custo: 2x os créditos gastos na Manus
+      const manusCredits = completedTask.credit_usage || 0;
+      const krioCredits = Math.ceil(manusCredits * 2); // Dobro dos créditos Manus
+      
+      console.log(`[Manus] Geração de roteiro - Créditos Manus: ${manusCredits}, Créditos Krio: ${krioCredits}`);
+
       // Deduzir créditos após sucesso
-      const newBalance = await deductCredits(ctx.user.id, CREDIT_COSTS.GENERATE_SCRIPT);
+      const newBalance = await deductCredits(ctx.user.id, krioCredits);
+      console.log(`[Manus] Créditos deduzidos. Novo saldo: ${newBalance}`);
 
       return {
         success: true,
         taskId: createResponse.task_id,
         script,
-        creditUsage: CREDIT_COSTS.GENERATE_SCRIPT,
+        manusCredits, // Créditos gastos na API Manus
+        krioCredits, // Créditos deduzidos na Krio (2x)
         newBalance,
       };
     }),

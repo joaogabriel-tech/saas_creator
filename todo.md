@@ -204,3 +204,54 @@
 - [x] Atualizar CREDITS_SYSTEM.md com documentação
 - [ ] Testar cenário com saldo suficiente (requer teste manual)
 - [ ] Testar cenário com saldo insuficiente (requer teste manual)
+
+## ✅ Roteiros por Projeto
+### Backend
+- [x] Criar router tRPC `scriptsRouter` em server/api/routers/scripts.ts
+- [x] Endpoint `list` filtrando por projectId
+- [x] Endpoint `create` salvando roteiro associado ao projeto
+- [x] Endpoint `delete` para remover roteiro
+- [x] Endpoint `getById` para buscar roteiro específico
+- [x] Endpoint `update` para editar roteiro
+- [x] Integrar com `manus.generateScript` para geração via IA
+- [x] Atualizar generateScript para retornar manusCredits e krioCredits
+- [x] Dedução automática após geração bem-sucedida (2x Manus)
+- [x] Registrar scriptsRouter no routers.ts
+
+### Frontend
+- [x] Criar página ProjectScripts.tsx em /project/:id/scripts
+- [x] Formulário de geração de roteiro com campos:
+  - [x] Seleção de referências do projeto (dropdown)
+  - [x] Campo de tema/tópico
+  - [x] Seleção de tom (informal, formal, humorístico, inspirador, educativo)
+  - [x] Duração estimada do vídeo (curto/médio/longo)
+- [x] Validação de créditos antes de gerar (modal InsufficientCreditsDialog)
+- [x] Botão desabilitado quando créditos insuficientes
+- [x] Mensagem de aviso quando créditos < 150
+- [x] Biblioteca de roteiros salvos com cards
+- [x] Botão de deletar roteiro com confirmação
+- [x] Botão "Ver Roteiro" navegando para página de detalhe
+- [x] Estados de loading, sucesso e erro
+- [x] Toast notifications com custo de créditos
+
+### Página de Visualização
+- [x] Criar página ScriptDetail.tsx em /project/:id/script/:scriptId
+- [x] Layout com header e botões de ação
+- [x] Exibição do roteiro formatado (markdown com Streamdown)
+- [x] Card de metadados (data, tom, formato)
+- [x] Botões: Voltar, Editar (disabled), Teleprompter (disabled), Exportar
+- [x] Função de exportar como .txt
+- [x] Loading skeleton e error handling
+
+### Integração
+- [x] Atualizar rota no App.tsx para /project/:id/scripts
+- [x] Atualizar rota no App.tsx para /project/:id/script/:scriptId
+- [x] Atualizar estatísticas do projeto após criar/deletar roteiro
+- [x] Invalidar cache de créditos após geração
+
+### Testes
+- [ ] Testar geração de roteiro com referências
+- [ ] Testar cenário com créditos insuficientes
+- [ ] Testar salvamento e listagem
+- [ ] Testar deletar roteiro
+- [ ] Validar atualização de estatísticas do projeto
