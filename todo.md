@@ -514,3 +514,22 @@
 - [x] Estilo: variant="ghost" com hover:bg-secondary/50
 - [x] Posição: topo esquerdo, antes do título
 - [x] Adicionar imports (Link, ArrowLeft)
+
+## 🔄 Remover Logo e Renomear KRYO → KRIO (Em Progresso)
+### Remoção de Imagens de Logo
+- [ ] Identificar todos os arquivos com `<img>` de logo
+- [ ] Layout.tsx - remover logo do sidebar
+- [ ] Login.tsx - remover logo da página de login
+- [ ] OnboardingModal.tsx - remover logo do modal
+- [ ] Manter apenas texto "KRIO"
+
+### Renomeação KRYO → KRIO
+- [ ] Buscar "KRYO" em todos os arquivos
+- [ ] Substituir por "KRIO" em:
+  - [ ] Layout.tsx
+  - [ ] Login.tsx
+  - [ ] OnboardingModal.tsx
+  - [ ] Home.tsx (se houver)
+  - [ ] Outros arquivos com menção
+- [ ] Atualizar meta tags e títulos
+- [ ] Verificar comentários no código

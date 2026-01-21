@@ -14,15 +14,7 @@ export default function Home() {
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border/40">
         <div className="container mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 relative flex items-center justify-center">
-               {/* Logo com efeito de brilho suave (drop-shadow) para realçar a estética de luxo */}
-              <img 
-                src="/images/kryo-luxury-logo.png" 
-                alt="KRYO Logo" 
-                className="w-full h-full object-contain drop-shadow-[0_0_8px_rgba(168,85,247,0.3)]" 
-              />
-            </div>
-            <span className="font-display font-bold text-2xl tracking-tight">KRYO</span>
+            <span className="font-display font-bold text-2xl tracking-tight">KRIO</span>
           </div>
           
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
@@ -64,7 +56,7 @@ export default function Home() {
           </h1>
           
           <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-up animation-delay-200">
-            A KRYO analisa seus criadores favoritos e gera roteiros personalizados que combinam com sua voz única. Tecnologia de ponta para criadores exigentes.
+            A KRIO analisa seus criadores favoritos e gera roteiros personalizados que combinam com sua voz única. Tecnologia de ponta para criadores exigentes.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animation-delay-300">
@@ -84,7 +76,7 @@ export default function Home() {
       <section id="features" className="py-24 bg-secondary/20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-display font-bold text-3xl md:text-4xl mb-4">Por que escolher a KRYO?</h2>
+            <h2 className="font-display font-bold text-3xl md:text-4xl mb-4">Por que escolher a KRIO?</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               Uma suíte completa de ferramentas desenhada para elevar a qualidade do seu conteúdo.
             </p>
@@ -126,14 +118,11 @@ export default function Home() {
       <footer className="py-12 border-t border-border/40 bg-background">
         <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2 opacity-80 hover:opacity-100 transition-opacity">
-            <div className="w-8 h-8 relative flex items-center justify-center">
-              <img src="/images/kryo-luxury-logo.png" alt="KRYO Logo" className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all" />
-            </div>
-            <span className="font-display font-bold text-lg">KRYO</span>
+            <span className="font-display font-bold text-lg">KRIO</span>
           </div>
           
           <div className="text-sm text-muted-foreground">
-            © 2024 KRYO Platform. Todos os direitos reservados.
+            © 2024 KRIO Platform. Todos os direitos reservados.
           </div>
           
           <div className="flex gap-6 text-sm font-medium text-muted-foreground">

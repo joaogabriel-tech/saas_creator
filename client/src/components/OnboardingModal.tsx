@@ -123,15 +123,8 @@ export default function OnboardingModal({ open, onComplete }: OnboardingModalPro
         <div className="relative bg-gradient-to-r from-primary/10 via-indigo-500/10 to-emerald-500/10 p-8 pb-6">
           {/* Logo */}
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 relative flex items-center justify-center">
-              <img
-                src="/images/kryo-luxury-logo.png"
-                alt="KRYO Logo"
-                className="w-full h-full object-contain drop-shadow-[0_0_12px_rgba(168,85,247,0.4)]"
-              />
-            </div>
             <h2 className="font-display font-bold text-2xl text-foreground">
-              Bem-vindo à <span className="text-primary">KRYO</span>
+              Bem-vindo à <span className="text-primary">KRIO</span>
             </h2>
           </div>
 

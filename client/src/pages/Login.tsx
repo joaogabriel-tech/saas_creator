@@ -24,12 +24,8 @@ export default function Login() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-16 h-16 relative flex items-center justify-center animate-pulse">
-            <img 
-              src="/images/kryo-luxury-logo.png" 
-              alt="KRYO Logo" 
-              className="w-full h-full object-contain drop-shadow-[0_0_16px_rgba(168,85,247,0.6)]" 
-            />
+          <div className="w-16 h-16 relative flex items-center justify-center text-5xl font-display font-bold text-primary animate-pulse">
+            K
           </div>
           <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full" />
         </div>
@@ -55,16 +51,9 @@ export default function Login() {
         <div className="hidden lg:flex flex-col gap-8 animate-fade-in">
           {/* Logo & Title */}
           <div className="space-y-6">
-            <div className="w-20 h-20 relative flex items-center justify-center">
-              <img 
-                src="/images/kryo-luxury-logo.png" 
-                alt="KRYO Logo" 
-                className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(168,85,247,0.5)] animate-pulse-slow" 
-              />
-            </div>
             <div>
               <h1 className="font-display font-bold text-5xl md:text-6xl tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
-                Bem-vindo à <span className="text-primary">KRYO</span>
+                Bem-vindo à <span className="text-primary">KRIO</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed max-w-lg">
                 A plataforma de criação de conteúdo que analisa seu DNA criativo e gera roteiros personalizados com IA.
@@ -115,15 +104,8 @@ export default function Login() {
           <div className="bg-card/90 backdrop-blur-2xl border border-border/50 rounded-3xl p-8 md:p-10 shadow-2xl shadow-primary/5">
             {/* Mobile Logo */}
             <div className="flex lg:hidden flex-col items-center mb-8">
-              <div className="w-16 h-16 relative flex items-center justify-center mb-4">
-                <img 
-                  src="/images/kryo-luxury-logo.png" 
-                  alt="KRYO Logo" 
-                  className="w-full h-full object-contain drop-shadow-[0_0_16px_rgba(168,85,247,0.5)]" 
-                />
-              </div>
               <h1 className="font-display font-bold text-3xl tracking-tight text-center">
-                Bem-vindo à <span className="text-primary">KRYO</span>
+                Bem-vindo à <span className="text-primary">KRIO</span>
               </h1>
               <p className="text-muted-foreground text-center mt-2">
                 Descubra o seu DNA criativo

@@ -59,8 +59,8 @@ export function ExitIntentPopup() {
             </div>
           </div>
 
-          <div className="bg-secondary/50 border border-dashed border-primary/30 p-4 rounded-xl flex items-center justify-between group cursor-pointer hover:bg-secondary transition-colors" onClick={() => {navigator.clipboard.writeText('KRYO15'); alert('Cupom copiado!')}}>
-            <code className="font-mono font-bold text-xl text-primary tracking-widest">KRYO15</code>
+          <div className="bg-secondary/50 border border-dashed border-primary/30 p-4 rounded-xl flex items-center justify-between group cursor-pointer hover:bg-secondary transition-colors" onClick={() => {navigator.clipboard.writeText('KRIO15'); alert('Cupom copiado!')}}>
+            <code className="font-mono font-bold text-xl text-primary tracking-widest">KRIO15</code>
             <Badge variant="secondary" className="bg-white text-xs font-bold shadow-sm group-hover:scale-105 transition-transform">
               COPIAR
             </Badge>

@@ -168,7 +168,7 @@ export default function Settings() {
             </div>
             <div className="grid grid-cols-[140px_1fr] gap-2 items-center">
               <span className="text-sm font-medium text-muted-foreground">Plataforma:</span>
-              <span className="text-sm text-foreground">KRYO</span>
+              <span className="text-sm text-foreground">KRIO</span>
             </div>
           </div>
           <Separator />
