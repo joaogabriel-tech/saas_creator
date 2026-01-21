@@ -7,6 +7,7 @@ import { creditsRouter } from "./creditsRouter";
 import { projectsRouter } from "./projectsRouter";
 import { referencesRouter } from "./referencesRouter";
 import { scriptsRouter } from "./api/routers/scripts";
+import { usersRouter } from "./usersRouter";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -16,6 +17,7 @@ export const appRouter = router({
   projects: projectsRouter,
   references: referencesRouter,
   scripts: scriptsRouter,
+  users: usersRouter,
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {

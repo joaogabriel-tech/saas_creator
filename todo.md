@@ -321,3 +321,39 @@
 - [x] Envolver rotas de projeto com ProtectedRoute
 - [x] Rota `/login` pública (sem proteção)
 - [x] Atualizar App.tsx com nova estrutura
+
+## ✅ Dados Dinâmicos do Usuário no Sidebar
+### Backend
+- [x] Criar endpoint `users.getCurrentPlan` retornando plano atual
+- [x] Retornar nome do plano (Free/Pro/Enterprise)
+- [x] Retornar status (active/expired)
+- [x] Retornar limites do plano (créditos mensais: 1000/5000/10000)
+- [x] Lógica baseada em saldo de créditos do usuário
+- [x] Registrar usersRouter no routers.ts
+
+### Componente UserAvatar
+- [x] Criar componente `UserAvatar.tsx`
+- [x] Gerar iniciais automaticamente do nome (ex: "João Gabriel" → "JG")
+- [x] Função de hash do nome para cor de fundo consistente (8 cores)
+- [x] Suporte para imagem de avatar se disponível (avatarUrl prop)
+- [x] Tamanhos variáveis (sm, md, lg)
+- [x] Border e shadow para destaque
+- [x] Fallback para "U" se nome não disponível
+
+### Layout Sidebar
+- [x] Substituir "João Gabriel" hardcoded por `useAuth().user.name`
+- [x] Usar componente UserAvatar no header
+- [x] Buscar plano via `trpc.users.getCurrentPlan.useQuery()`
+- [x] Exibir nome do plano dinamicamente no card ("Plano {Free/Pro/Enterprise}")
+- [x] Badge de status (Ativo/Expirado) com cores (verde/vermelho)
+- [x] Buscar créditos via `trpc.credits.getBalance.useQuery()`
+- [x] Atualizar barra de progresso com dados reais (width calculado dinamicamente)
+- [x] Texto dinâmico "X/Y créditos usados" (totalUsed/monthlyCredits)
+- [x] Loading skeleton enquanto carrega dados (3 linhas animadas)
+- [x] Fallback para dados padrão se falhar ("Free", 1000 créditos)
+- [x] Transição suave na barra de progresso (duration-500)
+
+### UX
+- [ ] Tooltip no avatar mostrando email do usuário (futuro)
+- [ ] Atualização automática de créditos após operações (futuro)
+- [ ] Invalidar cache após criar projeto/referência/roteiro (futuro)

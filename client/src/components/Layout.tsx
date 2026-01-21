@@ -15,6 +15,8 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { NewProjectDialog } from "@/components/NewProjectDialog";
 import { useState } from "react";
 import { trpc } from "@/lib/trpc";
+import { useAuth } from "@/_core/hooks/useAuth";
+import { UserAvatar } from "./UserAvatar";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -31,6 +33,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [isNewProjectDialogOpen, setIsNewProjectDialogOpen] = useState(false);
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
   const { data: recentProjects, isLoading: loadingProjects } = trpc.projects.getRecent.useQuery();
+  const { user } = useAuth();
+  const { data: userPlan, isLoading: loadingPlan } = trpc.users.getCurrentPlan.useQuery();
+  const { data: creditBalance, isLoading: loadingCredits } = trpc.credits.getBalance.useQuery();
   const logoutMutation = trpc.auth.logout.useMutation({
     onSuccess: () => {
       setLocation("/login");
@@ -139,14 +144,40 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <div className="mt-auto pt-8 border-t border-border/50">
         <div className="bg-secondary/50 rounded-2xl p-5 mb-6 border border-border/50">
-          <div className="flex justify-between items-center mb-3">
-            <span className="text-xs font-bold text-primary uppercase tracking-wider">Plano Pro</span>
-            <span className="text-[10px] bg-white px-2 py-0.5 rounded-full border border-border font-medium text-muted-foreground">Ativo</span>
-          </div>
-          <div className="w-full bg-white h-2 rounded-full overflow-hidden mb-2 border border-border/50">
-            <div className="bg-primary h-full w-1/2 rounded-full" />
-          </div>
-          <p className="text-xs text-muted-foreground">50/100 créditos usados</p>
+          {loadingPlan || loadingCredits ? (
+            <div className="space-y-3 animate-pulse">
+              <div className="h-4 bg-muted rounded w-2/3" />
+              <div className="h-2 bg-muted rounded" />
+              <div className="h-3 bg-muted rounded w-1/2" />
+            </div>
+          ) : (
+            <>
+              <div className="flex justify-between items-center mb-3">
+                <span className="text-xs font-bold text-primary uppercase tracking-wider">
+                  Plano {userPlan?.planName || "Free"}
+                </span>
+                <span className={cn(
+                  "text-[10px] px-2 py-0.5 rounded-full border font-medium",
+                  userPlan?.status === "active" 
+                    ? "bg-green-50 text-green-700 border-green-200" 
+                    : "bg-red-50 text-red-700 border-red-200"
+                )}>
+                  {userPlan?.status === "active" ? "Ativo" : "Expirado"}
+                </span>
+              </div>
+              <div className="w-full bg-white h-2 rounded-full overflow-hidden mb-2 border border-border/50">
+                <div 
+                  className="bg-primary h-full rounded-full transition-all duration-500" 
+                  style={{ 
+                    width: `${Math.min(100, ((creditBalance?.totalUsed || 0) / (userPlan?.monthlyCredits || 1000)) * 100)}%` 
+                  }}
+                />
+              </div>
+              <p className="text-xs text-muted-foreground">
+                {creditBalance?.totalUsed || 0}/{userPlan?.monthlyCredits || 1000} créditos usados
+              </p>
+            </>
+          )}
         </div>
 
         <button 
@@ -195,13 +226,23 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="max-w-7xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700">
           <header className="flex justify-end items-center mb-12 gap-4">
             <div className="flex items-center gap-3 pl-4 border-l border-border/50">
-              <div className="text-right hidden sm:block">
-                <p className="text-sm font-bold text-foreground">João Gabriel</p>
-                <p className="text-xs text-muted-foreground">Creator Plan</p>
-              </div>
-              <div className="w-10 h-10 rounded-full bg-secondary border border-border flex items-center justify-center text-foreground font-bold shadow-sm">
-                JG
-              </div>
+              {loadingPlan ? (
+                <div className="flex items-center gap-3">
+                  <div className="text-right hidden sm:block space-y-1">
+                    <div className="h-4 bg-muted rounded w-24 animate-pulse" />
+                    <div className="h-3 bg-muted rounded w-16 animate-pulse" />
+                  </div>
+                  <div className="w-10 h-10 rounded-full bg-muted animate-pulse" />
+                </div>
+              ) : (
+                <>
+                  <div className="text-right hidden sm:block">
+                    <p className="text-sm font-bold text-foreground">{user?.name || "Usuário"}</p>
+                    <p className="text-xs text-muted-foreground">{userPlan?.planName || "Free"} Plan</p>
+                  </div>
+                  <UserAvatar name={user?.name || undefined} size="md" />
+                </>
+              )}
             </div>
           </header>
           {children}
