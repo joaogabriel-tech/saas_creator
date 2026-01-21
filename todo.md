@@ -539,3 +539,5 @@
 
 ## ✅ Melhorias de UX/UI
 - [x] Mover exibição de créditos KRIO do sidebar para header (badge no topo esquerdo desktop e mobile)
+- [x] Mover badge de créditos KRIO para a direita do header (ao lado do avatar)
+- [x] Trocar ícone de dinheiro por losango no badge de créditos
