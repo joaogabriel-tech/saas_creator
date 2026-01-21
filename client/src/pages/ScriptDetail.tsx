@@ -73,7 +73,7 @@ export default function ScriptDetail() {
               className="mb-2 -ml-2"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Voltar para Roteiros
+              Voltar
             </Button>
             <h2 className="text-3xl sm:text-4xl font-display font-bold tracking-tight text-foreground">
               {script.title}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRoute, useLocation } from "wouter";
+import { useRoute, useLocation, Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, FileText, Trash2, Eye } from "lucide-react";
+import { Loader2, FileText, Trash2, Eye, ArrowLeft } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
 import ProjectLayout from "@/components/ProjectLayout";
@@ -123,6 +123,13 @@ export default function ProjectScripts() {
   return (
     <ProjectLayout projectId={projectId}>
       <div className="space-y-8">
+        {/* Back Button */}
+        <Link href={`/project/${projectId}/dashboard`}>
+          <Button variant="ghost" className="-ml-2 hover:bg-secondary/50">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Voltar
+          </Button>
+        </Link>
         {/* Header */}
         <div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight text-foreground mb-3">

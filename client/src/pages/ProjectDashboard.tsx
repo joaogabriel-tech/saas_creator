@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Video, Lightbulb, FileText, Plus, TrendingUp } from "lucide-react";
+import { Video, Lightbulb, FileText, Plus, TrendingUp, ArrowLeft } from "lucide-react";
 import { Link, useRoute } from "wouter";
 import { trpc } from "@/lib/trpc";
 import ProjectLayout from "@/components/ProjectLayout";
@@ -19,6 +19,14 @@ export default function ProjectDashboard() {
   return (
     <ProjectLayout projectId={projectId}>
       <div className="space-y-8">
+        {/* Back Button */}
+        <Link href="/projects">
+          <Button variant="ghost" className="-ml-2 hover:bg-secondary/50">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Voltar
+          </Button>
+        </Link>
+
         {/* Header */}
         <div className="flex flex-col gap-6">
           <div>

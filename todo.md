@@ -494,3 +494,16 @@
 - [x] Card de dicas com background secondary/30
 - [x] Footer com border-t e background secondary/20
 - [x] Botão "Anterior" desabilitado no primeiro passo
+
+## ✅ Botões de Voltar nas Páginas
+- [x] Identificar todas as páginas que precisam de botão voltar
+- [x] Adicionar botão voltar em ProjectDashboard → /projects
+- [x] Adicionar botão voltar em ProjectReferences → /project/:id/dashboard
+- [x] Adicionar botão voltar em ProjectScripts → /project/:id/dashboard
+- [x] Ajustar botão voltar em ScriptDetail (já existia, simplificado texto)
+- [x] Design consistente: ArrowLeft icon + texto "Voltar"
+- [x] Posição: topo esquerdo, antes do título
+- [x] Estilo: variant="ghost" com hover effect (hover:bg-secondary/50)
+- [x] Usar Link do wouter para navegação
+- [x] Adicionar imports necessários (Link, ArrowLeft)
+- [x] Testar navegação em todas as páginas (servidor rodando sem erros TypeScript)
