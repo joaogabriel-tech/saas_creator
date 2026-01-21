@@ -63,7 +63,7 @@ export default function Projects() {
   return (
     <div className="container mx-auto p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8">
       {/* Back Button */}
-      <Link href="/dashboard">
+      <Link href="/">
         <Button variant="ghost" className="-ml-2 hover:bg-secondary/50">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Voltar

@@ -515,21 +515,24 @@
 - [x] Posição: topo esquerdo, antes do título
 - [x] Adicionar imports (Link, ArrowLeft)
 
-## 🔄 Remover Logo e Renomear KRYO → KRIO (Em Progresso)
+## ✅ Remover Logo e Renomear KRYO → KRIO (Concluído)
 ### Remoção de Imagens de Logo
-- [ ] Identificar todos os arquivos com `<img>` de logo
-- [ ] Layout.tsx - remover logo do sidebar
-- [ ] Login.tsx - remover logo da página de login
-- [ ] OnboardingModal.tsx - remover logo do modal
-- [ ] Manter apenas texto "KRIO"
+- [x] Identificar todos os arquivos com `<img>` de logo
+- [x] Layout.tsx - remover logo do sidebar
+- [x] Login.tsx - remover logo da página de login
+- [x] OnboardingModal.tsx - remover logo do modal
+- [x] Manter apenas texto "KRIO"
 
 ### Renomeação KRYO → KRIO
-- [ ] Buscar "KRYO" em todos os arquivos
-- [ ] Substituir por "KRIO" em:
-  - [ ] Layout.tsx
-  - [ ] Login.tsx
-  - [ ] OnboardingModal.tsx
-  - [ ] Home.tsx (se houver)
-  - [ ] Outros arquivos com menção
-- [ ] Atualizar meta tags e títulos
-- [ ] Verificar comentários no código
+- [x] Buscar "KRYO" em todos os arquivos
+- [x] Substituir por "KRIO" em:
+  - [x] Layout.tsx
+  - [x] Login.tsx
+  - [x] OnboardingModal.tsx
+  - [x] Home.tsx (se houver)
+  - [x] Outros arquivos com menção
+- [x] Atualizar meta tags e títulos
+- [x] Verificar comentários no código
+
+## ✅ Correções de Bugs
+- [x] Corrigir botão "Voltar" na página Meus Projetos (erro 404 - rota /dashboard não existia, corrigido para /)
