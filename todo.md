@@ -357,3 +357,12 @@
 - [ ] Tooltip no avatar mostrando email do usuário (futuro)
 - [ ] Atualização automática de créditos após operações (futuro)
 - [ ] Invalidar cache após criar projeto/referência/roteiro (futuro)
+
+## ✅ Correção de Acessibilidade - DialogTitle
+- [x] Identificar todos os Dialogs sem DialogTitle
+- [x] NewProjectDialog já tem DialogTitle ("Novo Projeto")
+- [x] InsufficientCreditsDialog já tem DialogTitle ("Créditos Insuficientes")
+- [x] ManusDialog já tem DialogTitle (prop title)
+- [x] Corrigir CommandDialog movendo DialogHeader para dentro do DialogContent
+- [x] Adicionar fallbacks para title e description no CommandDialog
+- [x] Testar em /projects para verificar se erro foi resolvido (servidor reiniciado, sem erros)
