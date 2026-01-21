@@ -4,9 +4,20 @@ import { ArrowUpRight, Play, FileText, Activity, Zap, Sparkles, Folder } from "l
 import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
+import OnboardingModal from "@/components/OnboardingModal";
+import { useState } from "react";
 
 export default function Dashboard() {
   const { user } = useAuth();
+  const [showOnboarding, setShowOnboarding] = useState(
+    user?.onboardingCompleted === false
+  );
+  const completeOnboarding = trpc.users.completeOnboarding.useMutation();
+
+  const handleOnboardingComplete = async () => {
+    await completeOnboarding.mutateAsync();
+    setShowOnboarding(false);
+  };
   
   return (
     <div className="space-y-12">
@@ -31,6 +42,9 @@ export default function Dashboard() {
 
       {/* Stats Grid */}
       <StatsGrid />
+
+      {/* Onboarding Modal */}
+      <OnboardingModal open={showOnboarding} onComplete={handleOnboardingComplete} />
 
       {/* Main Content Area */}
       <div className="grid gap-6 lg:gap-8 lg:grid-cols-7">

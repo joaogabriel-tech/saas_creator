@@ -428,3 +428,69 @@
 - [x] Loading state com logo pulsante e spinner
 - [x] Hover effects nos cards (translate-y, border-primary)
 - [x] Arrow icon com animação translate-x no hover
+
+## ✅ Onboarding Pós-Login
+### Backend
+- [x] Adicionar campo `onboardingCompleted` (boolean) na tabela users
+- [x] Adicionar import de `boolean` do drizzle-orm
+- [x] Criar migration para adicionar campo (0003_chunky_cassandra_nova.sql)
+- [x] Executar `pnpm db:push` para aplicar mudanças
+- [x] Criar endpoint `users.completeOnboarding` no usersRouter
+- [x] Atualizar campo para true quando usuário completar tour
+
+### Componente OnboardingModal
+- [x] Criar arquivo `OnboardingModal.tsx` em components
+- [x] Design consistente com identidade KRYO (gradientes, cores primary/indigo/emerald)
+- [x] Modal com backdrop-blur e animação de entrada
+- [x] Header com logo e título "Bem-vindo à KRYO"
+- [x] Sistema de navegação entre 3 passos (useState)
+- [x] Indicador de progresso visual (barras coloridas)
+- [x] Botões "Anterior", "Próximo" e "Começar"
+- [x] Prevenir fechar modal clicando fora (onPointerDownOutside)
+- [x] Prevenir fechar com ESC (onEscapeKeyDown)
+
+### Passos do Tour
+- [x] **Passo 1:** Criar Projeto/Persona
+  - Ícone: FolderPlus (primary)
+  - Título: "Crie seu Primeiro Projeto"
+  - Descrição: Explicar conceito de projetos/personas
+  - 3 dicas com bolinhas coloridas
+- [x] **Passo 2:** Adicionar Referências
+  - Ícone: Video (indigo)
+  - Título: "Adicione Referências"
+  - Descrição: Como analisar criadores favoritos
+  - 3 dicas com bolinhas coloridas
+- [x] **Passo 3:** Gerar Roteiro
+  - Ícone: FileText (emerald)
+  - Título: "Gere Roteiros com IA"
+  - Descrição: Como criar scripts personalizados
+  - 3 dicas com bolinhas coloridas
+
+### Integração no Dashboard
+- [x] Importar OnboardingModal no Dashboard.tsx
+- [x] Verificar `user.onboardingCompleted` via useAuth
+- [x] Mostrar modal se `onboardingCompleted === false`
+- [x] Estado local para controlar visibilidade do modal (useState)
+- [x] Chamar `trpc.users.completeOnboarding.useMutation()` ao finalizar
+- [x] Fechar modal após completar onboarding
+
+### Animação de Confete
+- [x] Instalar biblioteca `canvas-confetti` via pnpm
+- [x] Instalar @types/canvas-confetti para TypeScript
+- [x] Importar confetti no OnboardingModal
+- [x] Disparar confete ao clicar "Começar" no passo 3
+- [x] Configurar cores KRYO (primary: #a855f7, indigo: #6366f1)
+- [x] Duração de 3 segundos com interval de 250ms
+- [x] Dois pontos de origem (esquerda e direita)
+- [x] Delay de 1 segundo antes de fechar modal
+
+### UX/UI
+- [x] Animações suaves (transition-all duration-500)
+- [x] Transições entre passos (progress bars)
+- [x] Não permitir fechar modal clicando fora (forçar conclusão)
+- [x] Responsivo (max-w-2xl, padding adaptativo)
+- [x] Header com gradiente (from-primary/10 via-indigo/10 to-emerald/10)
+- [x] Ícones grandes com backgrounds coloridos (w-20 h-20)
+- [x] Card de dicas com background secondary/30
+- [x] Footer com border-t e background secondary/20
+- [x] Botão "Anterior" desabilitado no primeiro passo

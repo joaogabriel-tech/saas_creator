@@ -44,4 +44,17 @@ export const usersRouter = router({
       creditsRemaining: user.credits,
     };
   }),
+
+  /**
+   * Mark onboarding as completed for current user
+   */
+  completeOnboarding: protectedProcedure.mutation(async ({ ctx }) => {
+    const db = await getDb();
+    await db!
+      .update(users)
+      .set({ onboardingCompleted: true })
+      .where(eq(users.id, ctx.user.id));
+
+    return { success: true };
+  }),
 });

@@ -22,6 +22,13 @@
       "when": 1768943618971,
       "tag": "0002_whole_madelyne_pryor",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1769003790095,
+      "tag": "0003_chunky_cassandra_nova",
+      "breakpoints": true
     }
   ]
 }

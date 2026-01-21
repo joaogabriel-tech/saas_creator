@@ -1,4 +1,4 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { boolean, int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
 
 /**
  * Core user table backing auth flow.
@@ -21,6 +21,8 @@ export const users = mysqlTable("users", {
   credits: int("credits").default(1000).notNull(),
   /** Total de créditos já consumidos (para estatísticas) */
   creditsUsed: int("creditsUsed").default(0).notNull(),
+  /** Indica se o usuário completou o onboarding inicial */
+  onboardingCompleted: boolean("onboardingCompleted").default(false).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
   lastSignedIn: timestamp("lastSignedIn").defaultNow().notNull(),
