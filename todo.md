@@ -373,3 +373,40 @@
 - [x] Substituir nome hardcoded por user.name
 - [x] Adicionar fallback para "Usuário" se nome não disponível
 - [x] Testar exibição com usuário real
+
+## ✅ Página de Configurações
+### Estrutura
+- [x] Criar página Settings.tsx em /pages
+- [x] Layout com cards organizados por seção
+- [x] Design consistente com identidade KRYO (ícones coloridos, cards com shadow)
+- [x] Responsivo (mobile/desktop com grid adaptativo)
+
+### Seção Conta
+- [x] Card "Informações da Conta" com ícone User
+- [x] Exibir nome do usuário (useAuth)
+- [x] Exibir email do usuário
+- [x] Exibir data de cadastro formatada (pt-BR)
+- [x] Exibir último acesso formatado
+- [x] Avatar do usuário (UserAvatar component size="lg")
+- [x] Botão "Sair da Conta" (variant destructive)
+- [x] Grid de detalhes com labels e valores
+
+### Funcionalidade Logout
+- [x] AlertDialog de confirmação de logout
+- [x] Integrar com trpc.auth.logout.useMutation()
+- [x] Loading state no botão ("Saindo...")
+- [x] Redirect para /login após logout (onSuccess)
+- [x] Mensagem clara no dialog explicando ação
+- [x] Botão desabilitado durante logout (isPending)
+
+### Seções Adicionais
+- [x] Card "Preferências" com ícone Bell (placeholder)
+- [x] Card "Sobre" com ícone Info
+- [x] Versão da aplicação (1.0.0)
+- [x] Links para Termos, Privacidade e Suporte
+
+### Rota
+- [x] Rota /settings já existia no App.tsx
+- [x] Atualizar import de Settings
+- [x] Substituir placeholder por componente Settings
+- [x] ProtectedRoute já aplicado

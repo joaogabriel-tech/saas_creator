@@ -16,6 +16,7 @@ import ReferenceDetail from "./pages/ReferenceDetail";
 import ProjectScripts from "./pages/ProjectScripts";
 import ScriptDetail from "./pages/ScriptDetail";
 import Login from "./pages/Login";
+import Settings from "./pages/Settings";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 function Router() {
   return (
@@ -80,7 +81,7 @@ function Router() {
       <Route path="/settings">
         <ProtectedRoute>
           <Layout>
-            <div className="p-8 text-center text-muted-foreground font-mono">Configurações (Em Breve)</div>
+            <Settings />
           </Layout>
         </ProtectedRoute>
       </Route>
