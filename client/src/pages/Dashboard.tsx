@@ -3,14 +3,17 @@ import { Button } from "@/components/ui/button";
 import { ArrowUpRight, Play, FileText, Activity, Zap, Sparkles, Folder } from "lucide-react";
 import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
+import { useAuth } from "@/_core/hooks/useAuth";
 
 export default function Dashboard() {
+  const { user } = useAuth();
+  
   return (
     <div className="space-y-12">
       <div className="flex flex-col gap-6">
         <div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight text-foreground mb-3">
-            Olá, <span className="text-primary">João Gabriel</span>
+            Olá, <span className="text-primary">{user?.name || "Usuário"}</span>
           </h2>
           <p className="text-muted-foreground font-sans text-base sm:text-lg max-w-xl leading-relaxed">
             Sua consistência está excelente. O DNA da sua persona atingiu <span className="font-semibold text-foreground">94% de fidelidade</span>.

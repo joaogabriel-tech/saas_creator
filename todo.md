@@ -366,3 +366,10 @@
 - [x] Corrigir CommandDialog movendo DialogHeader para dentro do DialogContent
 - [x] Adicionar fallbacks para title e description no CommandDialog
 - [x] Testar em /projects para verificar se erro foi resolvido (servidor reiniciado, sem erros)
+
+## ✅ Nome Dinâmico no Dashboard
+- [x] Identificar onde "João Gabriel" está hardcoded no Dashboard (linha 13)
+- [x] Importar useAuth no Dashboard.tsx
+- [x] Substituir nome hardcoded por user.name
+- [x] Adicionar fallback para "Usuário" se nome não disponível
+- [x] Testar exibição com usuário real
