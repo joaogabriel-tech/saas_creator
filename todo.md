@@ -542,3 +542,4 @@
 - [x] Mover badge de créditos KRIO para a direita do header (ao lado do avatar)
 - [x] Trocar ícone de dinheiro por losango no badge de créditos
 - [x] Mover badge de créditos para canto direito da barra mobile (à esquerda do menu hambúrguer)
+- [x] Alterar nome de "Shorts" para "TikTok" na página de referências

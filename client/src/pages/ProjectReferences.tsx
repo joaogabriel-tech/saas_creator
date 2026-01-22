@@ -145,7 +145,7 @@ export default function ProjectReferences() {
             <Tabs defaultValue="youtube" className="w-full">
               <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 mb-6">
                 <TabsTrigger value="youtube">YouTube</TabsTrigger>
-                <TabsTrigger value="shorts">Shorts</TabsTrigger>
+                <TabsTrigger value="shorts">TikTok</TabsTrigger>
                 <TabsTrigger value="upload" disabled>
                   Upload
                 </TabsTrigger>
